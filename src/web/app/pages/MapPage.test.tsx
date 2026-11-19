@@ -36,6 +36,18 @@ describe('MapPage', () => {
     }
   })
 
+  it('shows activity markers next to company markers, and opens an activity card', async () => {
+    const user = userEvent.setup()
+    render(<MapPage />)
+    expect(await screen.findAllByRole('button', { name: /, Activités$/ })).toHaveLength(6)
+    expect(screen.getAllByRole('button', { name: /, Entreprises$/ })).toHaveLength(6)
+
+    await user.click(await marker('Musée du Haut-Richelieu, Activités'))
+    const sheet = screen.getByRole('dialog', { name: 'Musée du Haut-Richelieu' })
+    expect(within(sheet).getByText('Activités')).toBeInTheDocument()
+    expect(within(sheet).getByText('Culture et musées')).toBeInTheDocument()
+  })
+
   it('names markers in the active language', async () => {
     render(<MapPage />)
     await marker(BAKERY)

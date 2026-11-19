@@ -48,6 +48,14 @@
       "mixed": "Mixte"
     }
   },
+  "activities": {
+    "subcategories": {
+      "parks": "Parcs",
+      "culture": "Culture et musées",
+      "dining": "Restauration",
+      "outdoor": "Plein air"
+    }
+  },
   "pages": {
     "map": {
       "title": "Carte"

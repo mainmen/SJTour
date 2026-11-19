@@ -51,9 +51,9 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 6: Activities module
 
-- [ ] Core: schema with `subcategory` (parks, culture, dining, outdoor), service and tests
-- [ ] Seed `activities.json` with sample entries
-- [ ] Web: add markers and cards, reusing the module contract
+- [x] Core: schema with `subcategory` (parks, culture, dining, outdoor), service and tests
+- [x] Seed `activities.json` with sample entries
+- [x] Web: add markers and cards, reusing the module contract
 
 ### Phase 7: Events module
 
