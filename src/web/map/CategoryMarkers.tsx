@@ -8,7 +8,7 @@ import type { WebCategoryModule } from '@/web/modules/types'
 import { catalogStore, selectionStore, useAppStore } from '@/web/state/stores'
 import { useLanguage } from '@/web/state/useLanguage'
 
-/** The markers of one category, once its records have loaded. */
+/** The markers (and overlay, if any) of one category, once its records have loaded. */
 export function CategoryMarkers({ module }: { module: WebCategoryModule }) {
   const { t } = useTranslation()
   const language = useLanguage()
@@ -23,18 +23,27 @@ export function CategoryMarkers({ module }: { module: WebCategoryModule }) {
   }, [collection, module])
 
   const categoryLabel = t(module.labelKey)
-  return records.map((record) => (
-    <PoiMarker
-      key={record.id}
-      position={record.coordinates}
-      label={t('map.marker', { name: pickText(record.name, language), category: categoryLabel })}
-      recordKey={`${module.id}/${record.id}`}
-      Icon={module.Icon}
-      tone={module.tone}
-      selected={isSelected(selected, { category: module.id, id: record.id })}
-      onSelect={() =>
-        selectionStore.getState().select({ category: module.id, id: record.id, origin: 'map' })
-      }
-    />
-  ))
+  const { Overlay } = module
+  return (
+    <>
+      {Overlay && <Overlay records={records} />}
+      {records.map((record) => (
+        <PoiMarker
+          key={record.id}
+          position={record.coordinates}
+          label={t('map.marker', {
+            name: pickText(record.name, language),
+            category: categoryLabel,
+          })}
+          recordKey={`${module.id}/${record.id}`}
+          Icon={module.Icon}
+          tone={module.tone}
+          selected={isSelected(selected, { category: module.id, id: record.id })}
+          onSelect={() =>
+            selectionStore.getState().select({ category: module.id, id: record.id, origin: 'map' })
+          }
+        />
+      ))}
+    </>
+  )
 }

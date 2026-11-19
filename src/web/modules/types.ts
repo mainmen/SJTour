@@ -6,6 +6,9 @@ import type { CategoryPresentation, CoreCategoryModule } from '@/core/types/modu
 
 export type CardProps<T extends BaseRecord> = { readonly record: T }
 
+/** Props of a category's map overlay: the records drawn on the map. */
+export type OverlayProps<T extends BaseRecord> = { readonly records: readonly T[] }
+
 /** Translation key of a category label. */
 export type CategoryLabelKey = `categories.${CategoryId}`
 
@@ -17,7 +20,14 @@ export type WebCategoryModule<T extends BaseRecord = BaseRecord> = CategoryPrese
   ComponentType<CardProps<T>>,
   LucideIcon,
   CategoryLabelKey
-> & { readonly core: CoreCategoryModule<T> }
+> & {
+  readonly core: CoreCategoryModule<T>
+  /**
+   * Map layer drawn under the markers, for records with a shape (trail lines).
+   * Rendered inside the map; point-only categories leave it out.
+   */
+  readonly Overlay?: ComponentType<OverlayProps<T>>
+}
 
 /**
  * Checks a module against its record type, then widens it for the registry.

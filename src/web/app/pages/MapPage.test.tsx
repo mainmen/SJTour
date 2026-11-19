@@ -66,6 +66,33 @@ describe('MapPage', () => {
     }
   })
 
+  it('draws walking (dashed) and biking (solid) trail layers, a both trail in each', async () => {
+    const { container } = render(<MapPage />)
+    expect(await screen.findAllByRole('button', { name: /, Sentiers$/ })).toHaveLength(3)
+    await waitFor(() => expect(container.querySelectorAll('path.trail-line')).toHaveLength(4))
+    const walking = container.querySelectorAll('path.trail-line--walking')
+    const biking = container.querySelectorAll('path.trail-line--biking')
+    expect(walking).toHaveLength(2)
+    expect(biking).toHaveLength(2)
+    walking.forEach((path) => expect(path).toHaveAttribute('stroke-dasharray'))
+    biking.forEach((path) => expect(path).not.toHaveAttribute('stroke-dasharray'))
+  })
+
+  it('opens the trail card when a trail line is tapped', async () => {
+    const user = userEvent.setup()
+    const { container } = render(<MapPage />)
+    await waitFor(() =>
+      expect(container.querySelectorAll('path.trail-line--walking')).toHaveLength(2),
+    )
+    // Drawn biking first, then walking: the last walking path is the promenade.
+    const promenade = [...container.querySelectorAll('path.trail-line--walking')].at(-1)!
+    await user.click(promenade)
+    const sheet = screen.getByRole('dialog', { name: 'Promenade riveraine exemple' })
+    expect(within(sheet).getByText('Sentiers')).toBeInTheDocument()
+    expect(within(sheet).getByText('Trottoir de bois')).toBeInTheDocument()
+    expect(promenade).toHaveAttribute('stroke-width', '8')
+  })
+
   it('names markers in the active language', async () => {
     render(<MapPage />)
     await marker(BAKERY)

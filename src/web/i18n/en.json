@@ -74,6 +74,31 @@
       "past": "Ended"
     }
   },
+  "trails": {
+    "length": "Length",
+    "difficulty": "Difficulty",
+    "surface": "Surface",
+    "types": {
+      "walk": "Walking",
+      "bike": "Biking",
+      "both": "Walking and biking"
+    },
+    "difficulties": {
+      "easy": "Easy",
+      "moderate": "Moderate",
+      "difficult": "Difficult"
+    },
+    "surfaces": {
+      "paved": "Paved",
+      "gravel": "Gravel",
+      "dirt": "Dirt",
+      "boardwalk": "Boardwalk",
+      "mixed": "Mixed"
+    },
+    "networks": {
+      "route-verte": "Route verte"
+    }
+  },
   "pages": {
     "map": {
       "title": "Map"

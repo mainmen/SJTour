@@ -1,0 +1,104 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "trails",
+        "lastVerified": "2026-11-19",
+        "sample": true,
+        "id": "piste-du-canal-de-chambly",
+        "name": {
+          "fr": "Piste du canal de Chambly (Route verte)",
+          "en": "Chambly Canal path (Route verte)"
+        },
+        "description": {
+          "fr": "Chemin de halage le long du canal de Chambly, entre Chambly et le Vieux-Saint-Jean, intégré à la Route verte. Partagé par les marcheurs et les cyclistes. Fiche d'exemple : tracé approximatif, à vérifier.",
+          "en": "Towpath along the Chambly Canal between Chambly and Old Saint-Jean, part of La Route verte. Shared by walkers and cyclists. Sample entry: approximate path, to be verified."
+        },
+        "lengthKm": 15.1,
+        "type": "both",
+        "difficulty": "easy",
+        "surface": "gravel",
+        "network": "route-verte"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-73.286, 45.4475],
+          [-73.285, 45.438],
+          [-73.283, 45.425],
+          [-73.28, 45.41],
+          [-73.277, 45.395],
+          [-73.274, 45.38],
+          [-73.271, 45.365],
+          [-73.268, 45.35],
+          [-73.265, 45.335],
+          [-73.261, 45.323],
+          [-73.2565, 45.314]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "trails",
+        "lastVerified": "2026-11-19",
+        "sample": true,
+        "id": "piste-cyclable-iberville-exemple",
+        "name": {
+          "fr": "Piste cyclable exemple d'Iberville",
+          "en": "Sample Iberville bike path"
+        },
+        "description": {
+          "fr": "Piste cyclable fictive sur la rive est du Richelieu servant de donnée d'exemple pour le développement.",
+          "en": "A fictional bike path on the east bank of the Richelieu, used as sample data during development."
+        },
+        "lengthKm": 4.9,
+        "type": "bike",
+        "difficulty": "moderate",
+        "surface": "paved"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-73.244, 45.308],
+          [-73.242, 45.3],
+          [-73.239, 45.29],
+          [-73.235, 45.278],
+          [-73.231, 45.265]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "category": "trails",
+        "lastVerified": "2026-11-19",
+        "sample": true,
+        "id": "promenade-riveraine-exemple",
+        "name": {
+          "fr": "Promenade riveraine exemple",
+          "en": "Sample riverside promenade"
+        },
+        "description": {
+          "fr": "Promenade piétonne fictive au bord du Richelieu, dans le Vieux-Saint-Jean, servant de donnée d'exemple.",
+          "en": "A fictional riverside walkway in Old Saint-Jean, used as sample data."
+        },
+        "lengthKm": 1,
+        "type": "walk",
+        "difficulty": "easy",
+        "surface": "boardwalk"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-73.254, 45.302],
+          [-73.2538, 45.305],
+          [-73.254, 45.308],
+          [-73.2548, 45.311]
+        ]
+      }
+    }
+  ]
+}

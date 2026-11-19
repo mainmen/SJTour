@@ -64,9 +64,9 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 8: Trails module
 
-- [ ] Seed `trails.geojson` with 2 or 3 trails, including La Route verte and the Chambly Canal path
-- [ ] Render separate walking and biking layers (`both` trails appear in each)
-- [ ] Show a trail card with length, difficulty and surface
+- [x] Seed `trails.geojson` with 2 or 3 trails, including La Route verte and the Chambly Canal path
+- [x] Render separate walking and biking layers (`both` trails appear in each)
+- [x] Show a trail card with length, difficulty and surface
 
 ### Phase 9: Category filtering
 

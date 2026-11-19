@@ -30,6 +30,10 @@
   --color-poi-events: #b91c1c;
   --color-poi-trails: #7e22ce;
 
+  /* Trail lines on the map tiles (walking dashed, biking solid); at least 3:1 on white. */
+  --color-trail-walking: #c2410c;
+  --color-trail-biking: #6d28d9;
+
   --animate-ripple: ripple 550ms ease-out forwards;
 
   @keyframes ripple {

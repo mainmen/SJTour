@@ -50,4 +50,11 @@ describe('design tokens meet WCAG AA', () => {
       expect(contrastRatio(white, token(`poi-${category}`))).toBeGreaterThanOrEqual(AA_NON_TEXT)
     },
   )
+
+  it.each(['walking', 'biking'])(
+    'the %s trail line colour is at least 3:1 on white map tiles',
+    (layer) => {
+      expect(contrastRatio(token(`trail-${layer}`), white)).toBeGreaterThanOrEqual(AA_NON_TEXT)
+    },
+  )
 })

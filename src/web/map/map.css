@@ -119,3 +119,18 @@
   outline: 3px solid var(--color-focus);
   outline-offset: 0;
 }
+
+/*
+ * Trail lines (TrailLines.tsx): walking is dashed, biking solid, so the two
+ * layers differ by pattern and colour. A selected trail is drawn thicker.
+ */
+.map-canvas .trail-line {
+  fill: none;
+  stroke-opacity: 0.9;
+}
+.map-canvas .trail-line--walking {
+  stroke: var(--color-trail-walking);
+}
+.map-canvas .trail-line--biking {
+  stroke: var(--color-trail-biking);
+}

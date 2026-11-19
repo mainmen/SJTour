@@ -74,6 +74,31 @@
       "past": "Terminé"
     }
   },
+  "trails": {
+    "length": "Longueur",
+    "difficulty": "Difficulté",
+    "surface": "Revêtement",
+    "types": {
+      "walk": "Marche",
+      "bike": "Vélo",
+      "both": "Marche et vélo"
+    },
+    "difficulties": {
+      "easy": "Facile",
+      "moderate": "Intermédiaire",
+      "difficult": "Difficile"
+    },
+    "surfaces": {
+      "paved": "Asphalte",
+      "gravel": "Gravier",
+      "dirt": "Terre battue",
+      "boardwalk": "Trottoir de bois",
+      "mixed": "Mixte"
+    },
+    "networks": {
+      "route-verte": "Route verte"
+    }
+  },
   "pages": {
     "map": {
       "title": "Carte"
