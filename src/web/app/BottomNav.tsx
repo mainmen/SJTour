@@ -50,9 +50,9 @@ export function BottomNav() {
     <GlassCard
       as="nav"
       aria-label={t('nav.label')}
-      className="relative z-10 shrink-0 border-t pb-[env(safe-area-inset-bottom)]"
+      className="relative z-10 mt-auto box-content h-(--shell-bar-height) shrink-0 border-t pb-[env(safe-area-inset-bottom)]"
     >
-      <ul className="mx-auto flex max-w-md">
+      <ul className="mx-auto flex h-full max-w-md">
         {navItems.map((item) => (
           <li key={item.to} className="flex-1">
             <NavItem {...item} />

@@ -1,9 +1,13 @@
 import { useTranslation } from 'react-i18next'
-import { PlaceholderPage } from '@/web/app/pages/PlaceholderPage'
+import { MapCanvas } from '@/web/map/MapCanvas'
 
+/** The home page: a full-screen map. Loaded lazily (see MapRoute) so Leaflet stays out of the main bundle. */
 export function MapPage() {
   const { t } = useTranslation()
   return (
-    <PlaceholderPage title={t('pages.map.title')}>{t('pages.map.placeholder')}</PlaceholderPage>
+    <section className="size-full">
+      <h2 className="sr-only">{t('pages.map.title')}</h2>
+      <MapCanvas />
+    </section>
   )
 }

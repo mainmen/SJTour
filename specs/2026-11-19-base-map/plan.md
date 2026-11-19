@@ -14,7 +14,7 @@ This plan starts after the Phase 2 commit. Each task group ends with `npm run ci
 ## 2. Dependencies and Leaflet in jsdom
 
 2.1 Install `leaflet` and `react-leaflet` (React 18–compatible), plus `@types/leaflet` as a dev dependency.
-2.2 Confirm that react-leaflet renders in jsdom. Add any small test polyfills it needs (for example a `ResizeObserver` or layout stubs) in `src/test/setup.ts`, with comments.
+2.2 Confirm that react-leaflet renders in jsdom. (Result: no polyfills needed; the map tests only stub `clientWidth`/`clientHeight` so Leaflet requests tiles, and jsdom zooms without animation, which lets a test check the zoom limits.)
 
 ## 3. MapCanvas
 
@@ -27,7 +27,7 @@ This plan starts after the Phase 2 commit. Each task group ends with `npm run ci
 
 4.1 Add `handle: { fullBleed: true }` to the `/` route, and make `AppLayout` read it through `useMatches` (D1). In full-bleed mode, `main` is an absolutely positioned layer behind the header and nav, which stay on top.
 4.2 Switch `MapPage` to render `MapCanvas` with a visually hidden `h2`, and load it with `React.lazy` and a `Suspense` fallback that uses the translated loading text (D4).
-4.3 Update the layout and routing tests to await the lazy page. Add tests that `/` is full-bleed and `/about` is not.
+4.3 Update the layout and routing tests to await the lazy page, and test the loading fallback (`MapLoading`) directly, since a resolved lazy module never shows it again. Add tests that `/` is full-bleed and `/about` is not.
 
 ## 5. Wrap-up
 

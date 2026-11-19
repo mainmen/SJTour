@@ -12,12 +12,28 @@ describe('AppLayout', () => {
     ).toBeInTheDocument()
   })
 
-  it('renders the current page inside the main landmark', () => {
+  it('renders the current page inside the main landmark', async () => {
     renderRoute('/')
     const main = screen.getByRole('main')
     expect(
-      within(main).getByRole('heading', { name: i18n.t('pages.map.title') }),
+      await within(main).findByRole('heading', { name: i18n.t('pages.map.title') }),
     ).toBeInTheDocument()
+  })
+
+  it('lays the map route out full-bleed, under the header and nav', async () => {
+    renderRoute('/')
+    expect(screen.getByRole('main')).toHaveAttribute('data-layout', 'full-bleed')
+    expect(screen.getByRole('main')).toHaveClass('absolute', 'inset-0')
+    // Header and nav stay above the map.
+    expect(screen.getByRole('banner')).toHaveClass('z-10')
+    expect(screen.getByRole('navigation')).toHaveClass('z-10')
+    await within(screen.getByRole('main')).findByRole('region', { name: i18n.t('map.label') })
+  })
+
+  it.each(['/list', '/about', '/does-not-exist'])('keeps %s in the flow layout', (path) => {
+    renderRoute(path)
+    expect(screen.getByRole('main')).toHaveAttribute('data-layout', 'flow')
+    expect(screen.getByRole('main')).not.toHaveClass('absolute')
   })
 
   it('renders a labeled navigation landmark with three text-labeled links', () => {

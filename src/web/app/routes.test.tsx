@@ -9,8 +9,9 @@ const pages = [
   { path: '/about', title: i18n.t('pages.about.title'), navLabel: i18n.t('nav.about') },
 ]
 
-function pageHeading(name: string) {
-  return within(screen.getByRole('main')).getByRole('heading', { level: 2, name })
+/** Awaits the page heading (the map page is lazy-loaded). */
+function findPageHeading(name: string) {
+  return within(screen.getByRole('main')).findByRole('heading', { level: 2, name })
 }
 
 function navLink(name: string) {
@@ -18,14 +19,14 @@ function navLink(name: string) {
 }
 
 describe('routes', () => {
-  it.each(pages)('renders the $path placeholder page', ({ path, title }) => {
+  it.each(pages)('renders the $path page', async ({ path, title }) => {
     renderRoute(path)
-    expect(pageHeading(title)).toBeInTheDocument()
+    expect(await findPageHeading(title)).toBeInTheDocument()
   })
 
-  it('renders the not-found page for an unknown path', () => {
+  it('renders the not-found page for an unknown path', async () => {
     renderRoute('/does-not-exist')
-    expect(pageHeading(i18n.t('pages.notFound.title'))).toBeInTheDocument()
+    expect(await findPageHeading(i18n.t('pages.notFound.title'))).toBeInTheDocument()
     expect(screen.getByRole('link', { name: i18n.t('pages.notFound.backHome') })).toHaveAttribute(
       'href',
       '/',
@@ -40,7 +41,7 @@ describe('routes', () => {
       const { router } = renderRoute(path === '/about' ? '/list' : '/about')
       await user.click(navLink(navLabel))
       expect(router.state.location.pathname).toBe(path)
-      expect(pageHeading(title)).toBeInTheDocument()
+      expect(await findPageHeading(title)).toBeInTheDocument()
     },
   )
 

@@ -10,10 +10,15 @@
     "list": "List",
     "about": "About"
   },
+  "map": {
+    "label": "Interactive map of Saint-Jean-sur-Richelieu",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "loading": "Loading the map…"
+  },
   "pages": {
     "map": {
-      "title": "Map",
-      "placeholder": "The map of Saint-Jean-sur-Richelieu is coming soon."
+      "title": "Map"
     },
     "list": {
       "title": "List",

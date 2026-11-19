@@ -10,10 +10,15 @@
     "list": "Liste",
     "about": "À propos"
   },
+  "map": {
+    "label": "Carte interactive de Saint-Jean-sur-Richelieu",
+    "zoomIn": "Zoom avant",
+    "zoomOut": "Zoom arrière",
+    "loading": "Chargement de la carte…"
+  },
   "pages": {
     "map": {
-      "title": "Carte",
-      "placeholder": "La carte de Saint-Jean-sur-Richelieu arrive bientôt."
+      "title": "Carte"
     },
     "list": {
       "title": "Liste",

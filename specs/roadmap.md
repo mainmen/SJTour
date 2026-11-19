@@ -31,9 +31,9 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 3: Base map
 
-- [ ] Full-screen Leaflet map centered on `[45.3073, -73.2625]`
-- [ ] OSM tiles with attribution
-- [ ] Zoom controls and a sensible min/max zoom
+- [x] Full-screen Leaflet map centered on `[45.3073, -73.2625]`
+- [x] OSM tiles with attribution
+- [x] Zoom controls and a sensible min/max zoom
 
 ### Phase 4: Core contracts and data layer (types and tests first)
 

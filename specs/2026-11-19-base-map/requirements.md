@@ -12,13 +12,13 @@ Phase 2 gave the shell i18n. The `/` route still shows a placeholder. This phase
 
 ### In scope
 
-1. **Dependencies:** `leaflet`, `react-leaflet` (the version that matches React 18) and `@types/leaflet` (dev).
+1. **Dependencies:** `leaflet`, `react-leaflet` 4.2 (v5 requires React 19) and `@types/leaflet` (dev).
 2. **Map config in core:** `src/core/map/config.ts` holds pure data: `MAP_CENTER = [45.3073, -73.2625]`, `INITIAL_ZOOM = 13`, `MIN_ZOOM = 11`, `MAX_ZOOM = 18`, `MAX_BOUNDS` (a padded box around the municipality), and the OSM tile URL and attribution. It has unit tests.
-3. **`MapCanvas`** in `src/web/map/MapCanvas.tsx`: a `MapContainer` with the config above, `maxBoundsViscosity` so the map resists panning out of bounds, a `TileLayer` for OSM, the attribution control, and a `ZoomControl` whose button titles are translated.
+3. **`MapCanvas`** in `src/web/map/MapCanvas.tsx`: a `MapContainer` with the config above, `maxBoundsViscosity` so the map resists panning out of bounds, a `TileLayer` for OSM, the attribution control, and a bottom-right `ZoomControl` (above the nav, in thumb reach) whose button titles are translated. The map container itself gets `role="region"` and the translated `aria-label`, since `MapContainer` passes no ARIA props to its DOM node.
 4. **Map page:** `MapPage` renders `MapCanvas` full-bleed. The map region has a translated accessible name, and the page title becomes a visually hidden `h2`.
-5. **Full-bleed layout:** on the map route only, the content area fills the whole viewport behind the glass header and nav. Other routes keep the current flex layout. Leaflet's controls and attribution sit inside the visible area, clear of the header, the nav and the safe-area insets.
+5. **Full-bleed layout:** on the map route only, the content area fills the whole viewport behind the glass header and nav. Other routes keep the current flex layout. Leaflet's controls and attribution sit inside the visible area, clear of the header, the nav and the safe-area insets: the header and nav bars get a fixed `--shell-bar-height` (3.5rem, plus border and safe-area padding), and `src/web/map/map.css` offsets the Leaflet corners by it.
 6. **Lazy loading:** the map page, including Leaflet and its CSS, loads through `React.lazy` and `Suspense`, with a translated loading fallback. `/list` and `/about` do not download Leaflet.
-7. **i18n:** new keys in `fr.json` and `en.json` for the map region label, zoom in/out, and loading.
+7. **i18n:** new keys in `fr.json` and `en.json` for the map region label, zoom in/out, and loading. The unused `pages.map.placeholder` key is removed.
 8. **Tests:** the core config values; `MapPage` rendered with real react-leaflet in jsdom (map container present, zoom buttons with translated titles, the OSM attribution text and link, the tile URL); the layout switching to full-bleed only on `/`; the existing routing tests still passing with the lazy route.
 
 ### Out of scope (later phases)

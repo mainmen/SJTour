@@ -1,0 +1,51 @@
+/*
+ * Leaflet tweaks for the full-bleed map (specs/2026-11-19-base-map).
+ * Loaded with the lazy map chunk only.
+ */
+
+/* The map sits under the glass header and nav: keep every control and the
+   attribution in the visible area between them, and inside the safe areas. */
+.map-canvas .leaflet-top {
+  top: calc(var(--shell-bar-height) + 1px + env(safe-area-inset-top));
+}
+.map-canvas .leaflet-bottom {
+  bottom: calc(var(--shell-bar-height) + 1px + env(safe-area-inset-bottom));
+}
+.map-canvas .leaflet-left {
+  left: env(safe-area-inset-left);
+}
+.map-canvas .leaflet-right {
+  right: env(safe-area-inset-right);
+}
+
+.map-canvas {
+  font-family: var(--font-sans);
+}
+
+/* 44 × 44 px zoom buttons (WCAG 2.5.5 target size). */
+.map-canvas .leaflet-control-zoom a {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 24px;
+  color: var(--color-ink);
+}
+
+/* Visible keyboard focus, using the design token. */
+.map-canvas a:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+.map-canvas.leaflet-container:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+/* Attribution must stay legible (required by OSM). */
+.map-canvas .leaflet-control-attribution {
+  color: var(--color-ink);
+  background-color: var(--color-glass);
+}
+.map-canvas .leaflet-control-attribution a {
+  color: var(--color-accent);
+}
