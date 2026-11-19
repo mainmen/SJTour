@@ -6,10 +6,10 @@ StJeanTour helps people discover Saint-Jean-sur-Richelieu, Quebec. It brings loc
 
 ## Audience
 
-| Audience | What they need |
-|---|---|
-| **Residents** | Find what's happening this weekend, discover local businesses, find a new trail close to home. |
-| **Tourists / visitors** | Get oriented quickly, see what's worth doing nearby, and get there. |
+| Audience                | What they need                                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------- |
+| **Residents**           | Find what's happening this weekend, discover local businesses, find a new trail close to home. |
+| **Tourists / visitors** | Get oriented quickly, see what's worth doing nearby, and get there.                            |
 
 Both audiences are served equally. Neither one is treated as secondary.
 

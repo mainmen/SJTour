@@ -2,26 +2,26 @@
 
 ## Summary
 
-| Concern | Choice |
-|---|---|
-| Language | TypeScript (strict mode) |
-| UI framework | React 18 |
-| Build tool / dev server | Vite |
-| Styling | Tailwind CSS (mobile-first breakpoints) |
-| Icons | Lucide (`lucide-react`), imported per icon so unused icons aren't bundled |
-| Map | Leaflet + react-leaflet |
-| Map tiles | OpenStreetMap raster tiles, with attribution |
-| Routing | React Router (hash- or history-based SPA routes) |
-| i18n | react-i18next (`fr` default, `en`) |
-| Data (MVP) | Static JSON + GeoJSON files in the repo |
-| Validation | Zod schemas for all content files |
-| State | Zustand stores in the core; filter state is mirrored to URL query params so views can be shared |
-| Walk/bike routing | OSRM (foot and bike profiles) behind a core `RoutingService` interface, in a later phase. Production uses a self-hosted or properly licensed instance, never the public demo server. Precomputed GeoJSON routes serve as a fallback or mock. |
-| PWA / offline | vite-plugin-pwa (Workbox), in a later phase |
-| Testing | Vitest + React Testing Library; Playwright for E2E |
-| Linting / format | ESLint + Prettier |
-| Package manager | npm |
-| Hosting | Static hosting (e.g. Netlify, Vercel or GitHub Pages) |
+| Concern                 | Choice                                                                                                                                                                                                                                       |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Language                | TypeScript (strict mode)                                                                                                                                                                                                                     |
+| UI framework            | React 18                                                                                                                                                                                                                                     |
+| Build tool / dev server | Vite                                                                                                                                                                                                                                         |
+| Styling                 | Tailwind CSS (mobile-first breakpoints)                                                                                                                                                                                                      |
+| Icons                   | Lucide (`lucide-react`), imported per icon so unused icons aren't bundled                                                                                                                                                                    |
+| Map                     | Leaflet + react-leaflet                                                                                                                                                                                                                      |
+| Map tiles               | OpenStreetMap raster tiles, with attribution                                                                                                                                                                                                 |
+| Routing                 | React Router (hash- or history-based SPA routes)                                                                                                                                                                                             |
+| i18n                    | react-i18next (`fr` default, `en`)                                                                                                                                                                                                           |
+| Data (MVP)              | Static JSON + GeoJSON files in the repo                                                                                                                                                                                                      |
+| Validation              | Zod schemas for all content files                                                                                                                                                                                                            |
+| State                   | Zustand stores in the core; filter state is mirrored to URL query params so views can be shared                                                                                                                                              |
+| Walk/bike routing       | OSRM (foot and bike profiles) behind a core `RoutingService` interface, in a later phase. Production uses a self-hosted or properly licensed instance, never the public demo server. Precomputed GeoJSON routes serve as a fallback or mock. |
+| PWA / offline           | vite-plugin-pwa (Workbox), in a later phase                                                                                                                                                                                                  |
+| Testing                 | Vitest + React Testing Library; Playwright for E2E                                                                                                                                                                                           |
+| Linting / format        | ESLint + Prettier                                                                                                                                                                                                                            |
+| Package manager         | npm                                                                                                                                                                                                                                          |
+| Hosting                 | Static hosting (e.g. Netlify, Vercel or GitHub Pages)                                                                                                                                                                                        |
 
 ## Architecture
 
