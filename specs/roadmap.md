@@ -82,8 +82,8 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 11: List view
 
-- [ ] Add an accessible list of all visible items, using the same filters as the map
-- [ ] Sync the map and list (selecting an item in the list focuses it on the map)
+- [x] Add an accessible list of all visible items, using the same filters as the map
+- [x] Sync the map and list (selecting an item in the list focuses it on the map)
 
 ### Phase 12: Search
 

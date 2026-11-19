@@ -36,6 +36,8 @@ export type WebCategoryModule<T extends BaseRecord = BaseRecord> = CategoryPrese
   CategoryLabelKey
 > & {
   readonly core: CoreCategoryModule<T>
+  /** One-line summary of a record in the list view (facets, dates, length…). */
+  readonly Summary: ComponentType<CardProps<T>>
   /** Filter chips for the module's layers, in display order. */
   readonly layers: readonly WebLayer[]
   /**

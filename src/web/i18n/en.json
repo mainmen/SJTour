@@ -124,6 +124,18 @@
       "message": "This place doesn't exist or was removed."
     }
   },
+  "list": {
+    "loading": "Loading the list…",
+    "count_one": "{{count}} item shown",
+    "count_other": "{{count}} items shown",
+    "categoryCount": "{{category}} ({{count}})",
+    "empty": "Nothing here yet.",
+    "noLayers": "No layer selected.",
+    "showAll": "Show all",
+    "loadError": "Couldn't load: {{category}}.",
+    "showOnMapNamed": "Show on map: {{name}}",
+    "selected": "Selected on the map"
+  },
   "pages": {
     "map": {
       "title": "Map"
@@ -132,8 +144,7 @@
       "title": "Events"
     },
     "list": {
-      "title": "List",
-      "placeholder": "The list of places and events is coming soon."
+      "title": "List"
     },
     "about": {
       "title": "About",

@@ -124,6 +124,18 @@
       "message": "Ce lieu n'existe pas ou a été retiré."
     }
   },
+  "list": {
+    "loading": "Chargement de la liste…",
+    "count_one": "{{count}} élément affiché",
+    "count_other": "{{count}} éléments affichés",
+    "categoryCount": "{{category}} ({{count}})",
+    "empty": "Aucun élément pour le moment.",
+    "noLayers": "Aucune couche sélectionnée.",
+    "showAll": "Tout afficher",
+    "loadError": "Impossible de charger : {{category}}.",
+    "showOnMapNamed": "Voir sur la carte : {{name}}",
+    "selected": "Sélectionné sur la carte"
+  },
   "pages": {
     "map": {
       "title": "Carte"
@@ -132,8 +144,7 @@
       "title": "Événements"
     },
     "list": {
-      "title": "Liste",
-      "placeholder": "La liste des lieux et des événements arrive bientôt."
+      "title": "Liste"
     },
     "about": {
       "title": "À propos",
