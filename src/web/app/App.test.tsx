@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import App from '@/App'
+import App from '@/web/app/App'
 
 describe('App', () => {
   it('renders the StJeanTour heading', () => {
