@@ -70,9 +70,9 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 9: Category filtering
 
-- [ ] Core: add a Zustand filter store and filter selectors, with unit tests
-- [ ] Web: add layer toggle chips (`FilterChips`) for Companies, Things to do, Events, Walking paths and Biking paths
-- [ ] Mirror the filter state to URL query params so views can be shared
+- [x] Core: add a Zustand filter store and filter selectors, with unit tests
+- [x] Web: add layer toggle chips (`FilterChips`) for Companies, Things to do, Events, Walking paths and Biking paths
+- [x] Mirror the filter state to URL query params so views can be shared
 
 ### Phase 10: Detail view
 

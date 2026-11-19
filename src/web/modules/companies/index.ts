@@ -10,4 +10,5 @@ export const companiesWebModule = defineWebModule({
   Icon: Building2Icon,
   tone: 'companies',
   Card: CompanyCard,
+  layers: [{ id: 'companies', labelKey: 'layers.companies', Icon: Building2Icon }],
 })

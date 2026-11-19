@@ -9,6 +9,7 @@ export type TestRecord = z.infer<typeof testSchema>
 
 export const testModule: CoreCategoryModule<TestRecord> = {
   id: 'companies',
+  layers: [{ id: 'companies' }],
   dataFile: 'data/test.json',
   recordSchema: testSchema,
 }

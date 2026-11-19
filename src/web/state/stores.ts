@@ -1,6 +1,7 @@
 import { useStore } from 'zustand'
 import type { StoreApi } from 'zustand/vanilla'
 import { createCatalogStore } from '@/core/store/catalog'
+import { createFilterStore } from '@/core/store/filters'
 import { createLanguageStore } from '@/core/store/language'
 import { createSelectionStore } from '@/core/store/selection'
 import { createFetchJsonSource } from '@/web/adapters/jsonSource'
@@ -14,6 +15,7 @@ export const INCLUDE_SAMPLE_DATA = true
 /** The app's store instances (core factories, browser adapters). */
 export const selectionStore = createSelectionStore()
 export const languageStore = createLanguageStore()
+export const filterStore = createFilterStore()
 export const catalogStore = createCatalogStore(createFetchJsonSource(), {
   includeSamples: INCLUDE_SAMPLE_DATA,
 })

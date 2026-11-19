@@ -44,11 +44,11 @@ function TrailLine({ trail, layer }: { trail: Trail; layer: TrailLayer }) {
 
 /**
  * The walking and biking layers: each trail drawn as a line in every layer it
- * belongs to (`both` trails in each). Keyboard and screen-reader users reach
+ * belongs to (`both` trails in each), for the layers switched on. Keyboard and screen-reader users reach
  * trails through their trailhead markers, which open the same card.
  */
-export function TrailLines({ records }: OverlayProps<Trail>) {
-  return DRAW_ORDER.map((layer) => (
+export function TrailLines({ records, layers }: OverlayProps<Trail>) {
+  return DRAW_ORDER.filter((layer) => layers.includes(layer)).map((layer) => (
     <LayerGroup key={layer}>
       {trailsInLayer(records, layer).map((trail) => (
         <TrailLine key={trail.id} trail={trail} layer={layer} />

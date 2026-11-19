@@ -26,6 +26,14 @@
     "events": "Événements",
     "trails": "Sentiers"
   },
+  "layers": {
+    "label": "Couches de la carte",
+    "companies": "Entreprises",
+    "activities": "Activités",
+    "events": "Événements",
+    "walking": "Sentiers pédestres",
+    "biking": "Pistes cyclables"
+  },
   "card": {
     "close": "Fermer la fiche",
     "address": "Adresse",

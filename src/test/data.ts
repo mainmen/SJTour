@@ -1,5 +1,5 @@
 import { readDataFile } from '@/core/test/dataFiles'
-import { catalogStore, selectionStore } from '@/web/state/stores'
+import { catalogStore, filterStore, selectionStore } from '@/web/state/stores'
 
 /**
  * Stubs `fetch` to serve the shipped `public/data` files. `overrides` replaces
@@ -25,4 +25,5 @@ export function stubDataFetch(overrides: Record<string, unknown> = {}) {
 export function resetAppStores() {
   catalogStore.setState({ collections: {} })
   selectionStore.setState({ selected: null })
+  filterStore.getState().showAll()
 }

@@ -26,6 +26,14 @@
     "events": "Events",
     "trails": "Trails"
   },
+  "layers": {
+    "label": "Map layers",
+    "companies": "Companies",
+    "activities": "Things to do",
+    "events": "Events",
+    "walking": "Walking paths",
+    "biking": "Biking paths"
+  },
   "card": {
     "close": "Close details",
     "address": "Address",

@@ -4,6 +4,7 @@ import type { CoreCategoryModule } from '@/core/types/module'
 
 export const eventsModule: CoreCategoryModule<EventRecord> = {
   id: 'events',
+  layers: [{ id: 'events' }],
   dataFile: 'data/events.json',
   recordSchema: eventSchema,
   // Past events are not drawn (specs/2026-11-19-events D6).

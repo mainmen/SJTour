@@ -10,4 +10,5 @@ export const eventsWebModule = defineWebModule({
   Icon: CalendarDaysIcon,
   tone: 'events',
   Card: EventCard,
+  layers: [{ id: 'events', labelKey: 'layers.events', Icon: CalendarDaysIcon }],
 })

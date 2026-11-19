@@ -10,4 +10,5 @@ export const activitiesWebModule = defineWebModule({
   Icon: TreesIcon,
   tone: 'activities',
   Card: ActivityCard,
+  layers: [{ id: 'activities', labelKey: 'layers.activities', Icon: TreesIcon }],
 })

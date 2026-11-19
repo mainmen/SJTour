@@ -1,4 +1,5 @@
 import type { z } from 'zod'
+import type { MapLayer } from '@/core/filters/layers'
 import type { BaseRecord } from '@/core/schemas/base'
 import type { CategoryId } from '@/core/types/category'
 import type { LatLngBounds } from '@/core/types/geo'
@@ -19,6 +20,8 @@ export interface CoreCategoryModule<T extends BaseRecord = BaseRecord> {
    * features' properties). When absent, the file must be a JSON array of records.
    */
   readonly fileSchema?: z.ZodType<unknown[]>
+  /** The map layers this module's records belong to (FilterChips toggles them). */
+  readonly layers: readonly MapLayer<T>[]
   /** Records drawn on the map at time `now`. All records when absent. */
   visibleOnMap?(records: readonly T[], now: Date): readonly T[]
   /**

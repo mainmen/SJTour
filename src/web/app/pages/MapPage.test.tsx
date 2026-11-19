@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { stubDataFetch } from '@/test/data'
 import { MapPage } from '@/web/app/pages/MapPage'
 import { i18n } from '@/web/i18n'
-import { selectionStore } from '@/web/state/stores'
+import { filterStore, selectionStore } from '@/web/state/stores'
 
 // jsdom has no layout: give elements a phone-sized box so Leaflet sets a view.
 beforeEach(() => {
@@ -91,6 +91,76 @@ describe('MapPage', () => {
     expect(within(sheet).getByText('Sentiers')).toBeInTheDocument()
     expect(within(sheet).getByText('Trottoir de bois')).toBeInTheDocument()
     expect(promenade).toHaveAttribute('stroke-width', '8')
+  })
+
+  describe('layer chips', () => {
+    function chips() {
+      return within(screen.getByRole('group', { name: 'Couches de la carte' })).getAllByRole(
+        'button',
+      )
+    }
+
+    it('shows one pressed chip per layer, in order', () => {
+      render(<MapPage />)
+      expect(chips().map((chip) => chip.textContent)).toEqual([
+        'Entreprises',
+        'Activités',
+        'Événements',
+        'Sentiers pédestres',
+        'Pistes cyclables',
+      ])
+      for (const chip of chips()) expect(chip).toHaveAttribute('aria-pressed', 'true')
+    })
+
+    it('hides and shows a category when its chip is toggled', async () => {
+      const user = userEvent.setup()
+      render(<MapPage />)
+      expect(await screen.findAllByRole('button', { name: /, Entreprises$/ })).toHaveLength(6)
+      const companies = screen.getByRole('button', { name: 'Entreprises', pressed: true })
+      await user.click(companies)
+      expect(companies).toHaveAttribute('aria-pressed', 'false')
+      expect(filterStore.getState().enabled).not.toContain('companies')
+      expect(screen.queryAllByRole('button', { name: /, Entreprises$/ })).toHaveLength(0)
+      expect(screen.getAllByRole('button', { name: /, Activités$/ })).toHaveLength(6)
+      await user.click(companies)
+      expect(screen.getAllByRole('button', { name: /, Entreprises$/ })).toHaveLength(6)
+    })
+
+    it('keeps a both trail on the map while either trail layer is on', async () => {
+      const user = userEvent.setup()
+      const { container } = render(<MapPage />)
+      expect(await screen.findAllByRole('button', { name: /, Sentiers$/ })).toHaveLength(3)
+      await user.click(screen.getByRole('button', { name: 'Sentiers pédestres' }))
+      expect(container.querySelectorAll('path.trail-line--walking')).toHaveLength(0)
+      expect(container.querySelectorAll('path.trail-line--biking')).toHaveLength(2)
+      const trailMarkers = screen.getAllByRole('button', { name: /, Sentiers$/ })
+      expect(trailMarkers.map((m) => m.getAttribute('aria-label'))).toEqual([
+        'Piste du canal de Chambly (Route verte), Sentiers',
+        "Piste cyclable exemple d'Iberville, Sentiers",
+      ])
+      await user.click(screen.getByRole('button', { name: 'Pistes cyclables' }))
+      expect(container.querySelectorAll('path.trail-line')).toHaveLength(0)
+      expect(screen.queryAllByRole('button', { name: /, Sentiers$/ })).toHaveLength(0)
+    })
+
+    it('closes the card when its layer is hidden', async () => {
+      const user = userEvent.setup()
+      render(<MapPage />)
+      await user.click(await marker(BAKERY))
+      expect(screen.getByRole('dialog')).toBeInTheDocument()
+      await user.click(screen.getByRole('button', { name: 'Entreprises', pressed: true }))
+      expect(screen.queryByRole('dialog')).toBeNull()
+      expect(selectionStore.getState().selected).toBeNull()
+    })
+
+    it('translates the chips', async () => {
+      render(<MapPage />)
+      await act(() => i18n.changeLanguage('en'))
+      expect(screen.getByRole('group', { name: 'Map layers' })).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: 'Things to do' })).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: 'Walking paths' })).toBeInTheDocument()
+      expect(screen.getByRole('button', { name: 'Biking paths' })).toBeInTheDocument()
+    })
   })
 
   it('names markers in the active language', async () => {
