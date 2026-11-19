@@ -5,6 +5,7 @@
     "switchTo": "Passer au français"
   },
   "nav": {
+    "skip": "Aller au contenu",
     "label": "Navigation principale",
     "map": "Carte",
     "events": "Événements",
@@ -18,7 +19,11 @@
     "loading": "Chargement de la carte…",
     "marker": "{{name}}, {{category}}",
     "loadError": "Impossible de charger : {{categories}}.",
-    "retry": "Réessayer"
+    "retry": "Réessayer",
+    "loadingPlaces": "Chargement des lieux…",
+    "empty": "Aucun lieu à afficher avec ces filtres.",
+    "cluster_one": "{{count}} lieu, {{category}}. Zoomer pour l’afficher",
+    "cluster_other": "{{count}} lieux, {{category}}. Zoomer pour les afficher"
   },
   "categories": {
     "companies": "Entreprises",
@@ -158,7 +163,14 @@
     },
     "about": {
       "title": "À propos",
-      "placeholder": "StJeanTour vous aide à découvrir Saint-Jean-sur-Richelieu."
+      "intro": "StJeanTour vous aide à découvrir Saint-Jean-sur-Richelieu : entreprises, activités, événements, sentiers pédestres et pistes cyclables, sur une carte ou en liste.",
+      "dataTitle": "Les données",
+      "data": "Chaque fiche indique la date de sa dernière vérification. Les horaires et les dates peuvent changer : confirmez auprès de l’organisateur avant de vous déplacer.",
+      "mapTitle": "La carte",
+      "mapCredit": "Fond de carte © les contributeurs d’OpenStreetMap.",
+      "mapLink": "Droits d’auteur et licence d’OpenStreetMap",
+      "privacyTitle": "Vie privée",
+      "privacy": "Aucun compte, aucun témoin (cookie) de suivi. Votre choix de langue est gardé sur votre appareil seulement."
     },
     "notFound": {
       "title": "Page introuvable",

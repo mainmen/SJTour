@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-/** Temporary page body until each route gets its real content. */
+/** A simple page body: a title and a few lines (the not-found page). */
 export function PlaceholderPage({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="mx-auto max-w-md p-4">

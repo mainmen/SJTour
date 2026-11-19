@@ -5,6 +5,9 @@ import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Served from a sub-path on GitHub Pages (`/<repo>/`, set by the deploy
+  // workflow); `/` everywhere else. Builds only: tests keep `/`.
+  base: process.env.VITEST ? '/' : (process.env.BASE_PATH ?? '/'),
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

@@ -4,6 +4,17 @@ import { LAYER_IDS } from '@/core/filters/layers'
 import { renderRoute } from '@/web/app/renderRoute'
 import { filterStore } from '@/web/state/stores'
 
+// These tests look at markers one by one: a zero radius keeps every marker
+// apart. Clustering has its own tests (cluster.test.ts, clusters.test.tsx).
+vi.mock('@/core/map/cluster', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/core/map/cluster')>()
+  return {
+    ...actual,
+    clusterPoints: ((points, zoom) =>
+      actual.clusterPoints(points, zoom, 0)) satisfies typeof actual.clusterPoints,
+  }
+})
+
 // Leaflet needs a size to lay out the map.
 beforeEach(() => {
   vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(360)

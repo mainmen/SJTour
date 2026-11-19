@@ -91,12 +91,12 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 13: MVP polish and release
 
-- [ ] Replace all sample data with real, verified entries (about 10 per category). The CI check confirms no `sample: true` records ship.
-- [ ] Add marker clustering
-- [ ] Add loading, empty and error states
-- [ ] Run an accessibility pass (keyboard, screen reader, contrast)
-- [ ] Check performance against the budget
-- [ ] Deploy to static hosting
+- [ ] Replace all sample data with real, verified entries (about 10 per category). The CI check confirms no `sample: true` records ship. — release check (`npm run check:release`) in place; data still to supply
+- [x] Add marker clustering
+- [x] Add loading, empty and error states
+- [ ] Run an accessibility pass (keyboard, screen reader, contrast) — automated part done; manual screen-reader pass open
+- [x] Check performance against the budget (enforced in CI by `npm run check:bundle`)
+- [ ] Deploy to static hosting — manual GitHub Pages workflow ready; first deploy after real data
 
 ## Milestone 2: Enhancements (after the MVP)
 

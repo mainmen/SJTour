@@ -55,6 +55,8 @@ describe('LanguageToggle', () => {
   it('is reachable by keyboard', async () => {
     const user = userEvent.setup()
     renderRoute('/')
+    // The skip link comes first, then the toggle.
+    await user.tab()
     await user.tab()
     expect(toggle()).toHaveFocus()
     await user.keyboard('{Enter}')

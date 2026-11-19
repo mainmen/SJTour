@@ -115,6 +115,36 @@
   }
 }
 
+/*
+ * Clusters (ClusterMarker.tsx): a round badge (not a pin) with the category
+ * icon and the count, so it reads differently from a single place.
+ */
+.map-canvas .poi-cluster {
+  align-items: center;
+}
+.map-canvas .poi-cluster__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--poi-color);
+  border: 3px solid #ffffff;
+  border-radius: 9999px;
+  box-shadow:
+    0 0 0 3px var(--poi-color),
+    0 1px 6px rgb(15 23 42 / 0.5);
+}
+.map-canvas .poi-cluster__icon {
+  width: 14px;
+  height: 14px;
+}
+
 .map-canvas .poi-marker:focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 0;
