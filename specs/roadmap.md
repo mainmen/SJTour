@@ -76,9 +76,9 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 10: Detail view
 
-- [ ] Add a `/:category/:id` detail route with full info
-- [ ] Add a "Directions" button that hands off to the device's maps app
-- [ ] Make the URL deep-linkable and shareable
+- [x] Add a `/:category/:id` detail route with full info
+- [x] Add a "Directions" button that hands off to the device's maps app
+- [x] Make the URL deep-linkable and shareable
 
 ### Phase 11: List view
 

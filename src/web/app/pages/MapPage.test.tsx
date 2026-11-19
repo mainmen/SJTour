@@ -1,6 +1,7 @@
 import { act, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { stubDataFetch } from '@/test/data'
+import { MemoryRouter } from 'react-router'
 import { MapPage } from '@/web/app/pages/MapPage'
 import { i18n } from '@/web/i18n'
 import { filterStore, selectionStore } from '@/web/state/stores'
@@ -17,13 +18,18 @@ afterEach(() => {
 
 const BAKERY = 'Boulangerie exemple, Entreprises'
 
+/** The map page inside a router (the card links to detail pages). */
+function renderMap() {
+  return render(<MapPage />, { wrapper: MemoryRouter })
+}
+
 function marker(name: string) {
   return screen.findByRole('button', { name })
 }
 
 describe('MapPage', () => {
   it('shows one labelled marker per company', async () => {
-    render(<MapPage />)
+    renderMap()
     const markers = await screen.findAllByRole('button', { name: /, Entreprises$/ })
     expect(markers).toHaveLength(6)
     expect(markers.map((m) => m.getAttribute('aria-label'))).toContain(
@@ -38,7 +44,7 @@ describe('MapPage', () => {
 
   it('shows activity markers next to company markers, and opens an activity card', async () => {
     const user = userEvent.setup()
-    render(<MapPage />)
+    renderMap()
     expect(await screen.findAllByRole('button', { name: /, Activités$/ })).toHaveLength(6)
     expect(screen.getAllByRole('button', { name: /, Entreprises$/ })).toHaveLength(6)
 
@@ -52,7 +58,7 @@ describe('MapPage', () => {
     vi.useFakeTimers({ toFake: ['Date'] })
     vi.setSystemTime(new Date('2026-11-19T12:00:00-05:00'))
     try {
-      render(<MapPage />)
+      renderMap()
       const markers = await screen.findAllByRole('button', { name: /, Événements$/ })
       expect(markers.map((m) => m.getAttribute('aria-label'))).toEqual([
         'Marché de Noël exemple, Événements',
@@ -67,7 +73,7 @@ describe('MapPage', () => {
   })
 
   it('draws walking (dashed) and biking (solid) trail layers, a both trail in each', async () => {
-    const { container } = render(<MapPage />)
+    const { container } = renderMap()
     expect(await screen.findAllByRole('button', { name: /, Sentiers$/ })).toHaveLength(3)
     await waitFor(() => expect(container.querySelectorAll('path.trail-line')).toHaveLength(4))
     const walking = container.querySelectorAll('path.trail-line--walking')
@@ -80,7 +86,7 @@ describe('MapPage', () => {
 
   it('opens the trail card when a trail line is tapped', async () => {
     const user = userEvent.setup()
-    const { container } = render(<MapPage />)
+    const { container } = renderMap()
     await waitFor(() =>
       expect(container.querySelectorAll('path.trail-line--walking')).toHaveLength(2),
     )
@@ -101,7 +107,7 @@ describe('MapPage', () => {
     }
 
     it('shows one pressed chip per layer, in order', () => {
-      render(<MapPage />)
+      renderMap()
       expect(chips().map((chip) => chip.textContent)).toEqual([
         'Entreprises',
         'Activités',
@@ -114,7 +120,7 @@ describe('MapPage', () => {
 
     it('hides and shows a category when its chip is toggled', async () => {
       const user = userEvent.setup()
-      render(<MapPage />)
+      renderMap()
       expect(await screen.findAllByRole('button', { name: /, Entreprises$/ })).toHaveLength(6)
       const companies = screen.getByRole('button', { name: 'Entreprises', pressed: true })
       await user.click(companies)
@@ -128,7 +134,7 @@ describe('MapPage', () => {
 
     it('keeps a both trail on the map while either trail layer is on', async () => {
       const user = userEvent.setup()
-      const { container } = render(<MapPage />)
+      const { container } = renderMap()
       expect(await screen.findAllByRole('button', { name: /, Sentiers$/ })).toHaveLength(3)
       await user.click(screen.getByRole('button', { name: 'Sentiers pédestres' }))
       expect(container.querySelectorAll('path.trail-line--walking')).toHaveLength(0)
@@ -145,7 +151,7 @@ describe('MapPage', () => {
 
     it('closes the card when its layer is hidden', async () => {
       const user = userEvent.setup()
-      render(<MapPage />)
+      renderMap()
       await user.click(await marker(BAKERY))
       expect(screen.getByRole('dialog')).toBeInTheDocument()
       await user.click(screen.getByRole('button', { name: 'Entreprises', pressed: true }))
@@ -154,7 +160,7 @@ describe('MapPage', () => {
     })
 
     it('translates the chips', async () => {
-      render(<MapPage />)
+      renderMap()
       await act(() => i18n.changeLanguage('en'))
       expect(screen.getByRole('group', { name: 'Map layers' })).toBeInTheDocument()
       expect(screen.getByRole('button', { name: 'Things to do' })).toBeInTheDocument()
@@ -164,7 +170,7 @@ describe('MapPage', () => {
   })
 
   it('names markers in the active language', async () => {
-    render(<MapPage />)
+    renderMap()
     await marker(BAKERY)
     await act(() => i18n.changeLanguage('en'))
     expect(await marker('Sample Bakery, Companies')).toBeInTheDocument()
@@ -172,7 +178,7 @@ describe('MapPage', () => {
 
   it('opens the card in a bottom sheet when a marker is tapped', async () => {
     const user = userEvent.setup()
-    const { container } = render(<MapPage />)
+    const { container } = renderMap()
     const bakery = await marker(BAKERY)
     await user.click(bakery)
 
@@ -191,7 +197,7 @@ describe('MapPage', () => {
 
   it('switches the card when another marker is tapped', async () => {
     const user = userEvent.setup()
-    render(<MapPage />)
+    renderMap()
     await user.click(await marker(BAKERY))
     // A second click this fast would be a Leaflet double-click (map zoom), which
     // jsdom can't lay out; select the next marker from the keyboard instead.
@@ -203,7 +209,7 @@ describe('MapPage', () => {
 
   it('opens the card with Enter on a focused marker', async () => {
     const user = userEvent.setup()
-    render(<MapPage />)
+    renderMap()
     const bakery = await marker(BAKERY)
     bakery.focus()
     await user.keyboard('{Enter}')
@@ -212,7 +218,7 @@ describe('MapPage', () => {
 
   it('opens the card with Space on a focused marker', async () => {
     const user = userEvent.setup()
-    render(<MapPage />)
+    renderMap()
     const bakery = await marker(BAKERY)
     bakery.focus()
     await user.keyboard(' ')
@@ -221,7 +227,7 @@ describe('MapPage', () => {
 
   it('closes with Escape and returns focus to the marker', async () => {
     const user = userEvent.setup()
-    const { container } = render(<MapPage />)
+    const { container } = renderMap()
     const bakery = await marker(BAKERY)
     await user.click(bakery)
     await user.keyboard('{Escape}')
@@ -234,7 +240,7 @@ describe('MapPage', () => {
 
   it('closes with the close button and returns focus to the marker', async () => {
     const user = userEvent.setup()
-    render(<MapPage />)
+    renderMap()
     const bakery = await marker(BAKERY)
     await user.click(bakery)
     await user.click(screen.getByRole('button', { name: 'Fermer la fiche' }))
@@ -246,7 +252,7 @@ describe('MapPage', () => {
     selectionStore
       .getState()
       .select({ category: 'companies', id: 'atelier-techno-exemple', origin: 'list' })
-    const { container } = render(<MapPage />)
+    const { container } = renderMap()
     expect(
       await screen.findByRole('dialog', { name: 'Atelier techno exemple' }),
     ).toBeInTheDocument()
@@ -263,7 +269,7 @@ describe('MapPage', () => {
   it('shows an alert for a category that fails to load, and Retry recovers', async () => {
     const user = userEvent.setup()
     stubDataFetch({ 'data/companies.json': new TypeError('Failed to fetch') })
-    render(<MapPage />)
+    renderMap()
     const alert = await screen.findByRole('alert')
     expect(alert).toHaveTextContent('Impossible de charger : Entreprises.')
     expect(screen.queryAllByRole('button', { name: /, Entreprises$/ })).toHaveLength(0)
@@ -276,7 +282,7 @@ describe('MapPage', () => {
 
   it('treats invalid data as a load error too', async () => {
     stubDataFetch({ 'data/companies.json': [{ id: 'broken' }] })
-    render(<MapPage />)
+    renderMap()
     expect(await screen.findByRole('alert')).toHaveTextContent('Entreprises')
   })
 })

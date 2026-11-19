@@ -40,7 +40,9 @@
     "website": "Site web",
     "newTab": "(s'ouvre dans un nouvel onglet)",
     "lastVerified": "Vérifié le {{date}}",
-    "sample": "Donnée d'exemple"
+    "sample": "Donnée d'exemple",
+    "details": "Fiche complète",
+    "detailsNamed": "Fiche complète : {{name}}"
   },
   "companies": {
     "kinds": {
@@ -105,6 +107,21 @@
     },
     "networks": {
       "route-verte": "Route verte"
+    }
+  },
+  "detail": {
+    "back": "Retour",
+    "loading": "Chargement de la fiche…",
+    "loadError": "Impossible de charger cette fiche.",
+    "directions": "Itinéraire",
+    "directionsHint": "(ouvre l'application de cartes)",
+    "share": "Partager",
+    "copied": "Lien copié dans le presse-papiers.",
+    "shareFailed": "Impossible de partager. Lien : {{url}}",
+    "documentTitle": "{{name}} — {{appName}}",
+    "notFound": {
+      "title": "Fiche introuvable",
+      "message": "Ce lieu n'existe pas ou a été retiré."
     }
   },
   "pages": {

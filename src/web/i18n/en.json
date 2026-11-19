@@ -40,7 +40,9 @@
     "website": "Website",
     "newTab": "(opens in a new tab)",
     "lastVerified": "Last verified {{date}}",
-    "sample": "Sample data"
+    "sample": "Sample data",
+    "details": "Full details",
+    "detailsNamed": "Full details: {{name}}"
   },
   "companies": {
     "kinds": {
@@ -105,6 +107,21 @@
     },
     "networks": {
       "route-verte": "Route verte"
+    }
+  },
+  "detail": {
+    "back": "Back",
+    "loading": "Loading details…",
+    "loadError": "Couldn't load these details.",
+    "directions": "Directions",
+    "directionsHint": "(opens your maps app)",
+    "share": "Share",
+    "copied": "Link copied to the clipboard.",
+    "shareFailed": "Couldn't share. Link: {{url}}",
+    "documentTitle": "{{name}} — {{appName}}",
+    "notFound": {
+      "title": "Place not found",
+      "message": "This place doesn't exist or was removed."
     }
   },
   "pages": {

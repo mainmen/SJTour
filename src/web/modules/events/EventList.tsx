@@ -1,8 +1,10 @@
 import { MapPinIcon } from 'lucide-react'
 import { useId } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router'
 import type { EventRecord } from '@/core/modules/events/schema'
 import { pickText } from '@/core/types/bilingual'
+import { recordPath } from '@/web/app/paths'
 import { EventDates } from '@/web/modules/events/EventDates'
 import { Badge } from '@/web/modules/shared/RecordBody'
 import { useLanguage } from '@/web/state/useLanguage'
@@ -26,7 +28,12 @@ function EventItem({ event, onShowOnMap }: { event: EventRecord; onShowOnMap: ()
       className="flex flex-col gap-2 rounded-xl border border-glass-border bg-surface p-4 text-sm shadow-sm"
     >
       <h3 id={titleId} className="text-base leading-snug font-semibold text-ink">
-        {name}
+        <Link
+          to={recordPath({ category: 'events', id: event.id })}
+          className="underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        >
+          {name}
+        </Link>
       </h3>
       <EventDates event={event} />
       {event.address && <p className="text-ink-muted">{event.address}</p>}
