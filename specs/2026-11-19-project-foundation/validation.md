@@ -43,10 +43,10 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 
 Run `npm run dev` and open the app in browser devtools with a 375 × 667 viewport:
 
-- [ ] The page renders the "StJeanTour" heading styled by Tailwind
-- [ ] There is no horizontal scroll, and the viewport meta tag is correct (no zoom-out on mobile)
+- [x] The page renders the "StJeanTour" heading styled by Tailwind
+- [x] There is no horizontal scroll, and the viewport meta tag is correct (no zoom-out on mobile)
 - [x] `<html lang="fr">` and `<title>StJeanTour</title>` are present
-- [ ] The browser console shows no errors or warnings
+- [x] The browser console shows no errors or warnings
 - [x] No template leftovers are visible (Vite/React logos, counter demo)
 
 ## 7. Performance baseline
