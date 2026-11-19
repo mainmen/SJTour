@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+
+/* Brand tokens are defined in later phases (see specs/tech-stack.md → Visual style). */
+@theme {
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-sans text-slate-900 antialiased;
+  }
+}
