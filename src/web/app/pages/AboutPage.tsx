@@ -1,10 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import { PlaceholderPage } from '@/web/app/pages/PlaceholderPage'
-import { strings } from '@/web/app/strings'
 
 export function AboutPage() {
+  const { t } = useTranslation()
   return (
-    <PlaceholderPage title={strings.pages.about.title}>
-      {strings.pages.about.placeholder}
-    </PlaceholderPage>
+    <PlaceholderPage title={t('pages.about.title')}>{t('pages.about.placeholder')}</PlaceholderPage>
   )
 }

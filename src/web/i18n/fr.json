@@ -1,0 +1,37 @@
+{
+  "appName": "StJeanTour",
+  "language": {
+    "code": "FR",
+    "switchTo": "Passer au français"
+  },
+  "nav": {
+    "label": "Navigation principale",
+    "map": "Carte",
+    "list": "Liste",
+    "about": "À propos"
+  },
+  "map": {
+    "label": "Carte interactive de Saint-Jean-sur-Richelieu",
+    "zoomIn": "Zoom avant",
+    "zoomOut": "Zoom arrière",
+    "loading": "Chargement de la carte…"
+  },
+  "pages": {
+    "map": {
+      "title": "Carte"
+    },
+    "list": {
+      "title": "Liste",
+      "placeholder": "La liste des lieux et des événements arrive bientôt."
+    },
+    "about": {
+      "title": "À propos",
+      "placeholder": "StJeanTour vous aide à découvrir Saint-Jean-sur-Richelieu."
+    },
+    "notFound": {
+      "title": "Page introuvable",
+      "message": "Cette page n'existe pas.",
+      "backHome": "Retour à l'accueil"
+    }
+  }
+}

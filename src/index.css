@@ -60,6 +60,12 @@
 }
 
 @layer base {
+  /* Height of the header and bottom-nav bars, excluding their border and safe-area
+     padding. The full-bleed map offsets its controls by it (src/web/map/map.css). */
+  :root {
+    --shell-bar-height: 3.5rem;
+  }
+
   html,
   body,
   #root {
