@@ -1,0 +1,90 @@
+[
+  {
+    "id": "marche-de-noel-exemple",
+    "category": "events",
+    "name": { "fr": "Marché de Noël exemple", "en": "Sample Christmas Market" },
+    "description": {
+      "fr": "Marché fictif dans le Vieux-Saint-Jean servant de donnée d'exemple pour le développement.",
+      "en": "A fictional market in Old Saint-Jean used as sample data during development."
+    },
+    "coordinates": [45.3062, -73.254],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "address": "Rue Richelieu, Saint-Jean-sur-Richelieu",
+    "startDate": "2026-11-28T10:00:00-05:00",
+    "endDate": "2026-12-20T17:00:00-05:00"
+  },
+  {
+    "id": "concert-exemple",
+    "category": "events",
+    "name": { "fr": "Concert exemple", "en": "Sample Concert" },
+    "description": {
+      "fr": "Concert fictif servant de donnée d'exemple pour le développement.",
+      "en": "A fictional concert used as sample data during development."
+    },
+    "coordinates": [45.3091, -73.2621],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "startDate": "2026-12-05T19:30:00-05:00",
+    "endDate": "2026-12-05T22:00:00-05:00"
+  },
+  {
+    "id": "international-de-montgolfieres",
+    "category": "events",
+    "name": {
+      "fr": "L'International de montgolfières",
+      "en": "International Balloon Festival"
+    },
+    "description": {
+      "fr": "Le festival de montgolfières de Saint-Jean-sur-Richelieu, chaque mois d'août. Fiche d'exemple : dates et lieu à confirmer.",
+      "en": "Saint-Jean-sur-Richelieu's hot-air balloon festival, every August. Sample entry: dates and venue to be confirmed."
+    },
+    "coordinates": [45.2945, -73.281],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "startDate": "2027-08-14T00:00:00-04:00",
+    "endDate": "2027-08-22T23:59:00-04:00"
+  },
+  {
+    "id": "marche-d-automne-exemple",
+    "category": "events",
+    "name": { "fr": "Marché d'automne exemple", "en": "Sample Fall Market" },
+    "description": {
+      "fr": "Marché fictif servant de donnée d'exemple pour le développement.",
+      "en": "A fictional market used as sample data during development."
+    },
+    "coordinates": [45.3047, -73.2571],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "startDate": "2026-11-07T09:00:00-05:00",
+    "endDate": "2026-11-08T16:00:00-05:00"
+  },
+  {
+    "id": "course-exemple",
+    "category": "events",
+    "name": { "fr": "Course à pied exemple", "en": "Sample Fun Run" },
+    "description": {
+      "fr": "Course fictive le long du Richelieu servant de donnée d'exemple pour le développement.",
+      "en": "A fictional run along the Richelieu used as sample data during development."
+    },
+    "coordinates": [45.3138, -73.2505],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "startDate": "2026-10-25T08:00:00-04:00",
+    "endDate": "2026-10-25T12:00:00-04:00"
+  },
+  {
+    "id": "fete-de-la-rentree-exemple",
+    "category": "events",
+    "name": { "fr": "Fête de la rentrée exemple", "en": "Sample Back-to-School Party" },
+    "description": {
+      "fr": "Fête fictive servant de donnée d'exemple pour le développement.",
+      "en": "A fictional party used as sample data during development."
+    },
+    "coordinates": [45.2985, -73.2802],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "startDate": "2026-09-12T13:00:00-04:00",
+    "endDate": "2026-09-12T18:00:00-04:00"
+  }
+]

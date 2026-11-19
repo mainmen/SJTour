@@ -30,28 +30,32 @@ describe('AppLayout', () => {
     await within(screen.getByRole('main')).findByRole('region', { name: i18n.t('map.label') })
   })
 
-  it.each(['/list', '/about', '/does-not-exist'])('keeps %s in the flow layout', (path) => {
-    renderRoute(path)
-    expect(screen.getByRole('main')).toHaveAttribute('data-layout', 'flow')
-    expect(screen.getByRole('main')).not.toHaveClass('absolute')
-  })
+  it.each(['/events', '/list', '/about', '/does-not-exist'])(
+    'keeps %s in the flow layout',
+    (path) => {
+      renderRoute(path)
+      expect(screen.getByRole('main')).toHaveAttribute('data-layout', 'flow')
+      expect(screen.getByRole('main')).not.toHaveClass('absolute')
+    },
+  )
 
-  it('renders a labeled navigation landmark with three text-labeled links', () => {
+  it('renders a labeled navigation landmark with four text-labeled links', () => {
     renderRoute('/')
     const nav = screen.getByRole('navigation', { name: i18n.t('nav.label') })
     const links = within(nav).getAllByRole('link')
     expect(links.map((l) => l.textContent)).toEqual([
       i18n.t('nav.map'),
+      i18n.t('nav.events'),
       i18n.t('nav.list'),
       i18n.t('nav.about'),
     ])
-    expect(links.map((l) => l.getAttribute('href'))).toEqual(['/', '/list', '/about'])
+    expect(links.map((l) => l.getAttribute('href'))).toEqual(['/', '/events', '/list', '/about'])
   })
 
   it('hides nav icons from assistive technology', () => {
     renderRoute('/')
     const icons = screen.getByRole('navigation').querySelectorAll('svg')
-    expect(icons).toHaveLength(3)
+    expect(icons).toHaveLength(4)
     icons.forEach((icon) => expect(icon).toHaveAttribute('aria-hidden', 'true'))
   })
 

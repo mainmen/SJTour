@@ -37,30 +37,30 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 4: Core contracts and data layer (types and tests first)
 
-- [ ] Define the shared types and the `CategoryModule` contract (core and web sides) in `src/core/types/`
-- [ ] Define the base Zod schema (bilingual fields, coordinates, `lastVerified`, optional `sample`)
-- [ ] Write a generic JSON loader service with validation and error states, with unit tests
-- [ ] Create the Zustand store skeleton (selection, language), with unit tests
+- [x] Define the shared types and the `CategoryModule` contract (core and web sides) in `src/core/types/`
+- [x] Define the base Zod schema (bilingual fields, coordinates, `lastVerified`, optional `sample`)
+- [x] Write a generic JSON loader service with validation and error states, with unit tests
+- [x] Create the Zustand store skeleton (selection, language), with unit tests
 
 ### Phase 5: Companies module
 
-- [ ] Core: schema (with `sector` and `kind`), service and unit tests
-- [ ] Seed `companies.json` with sample entries flagged `sample: true`, including an industrial park
-- [ ] Web: show markers on the map
-- [ ] Web: show a bottom-sheet card on a glass panel when a marker is tapped
+- [x] Core: schema (with `sector` and `kind`), service and unit tests
+- [x] Seed `companies.json` with sample entries flagged `sample: true`, including an industrial park
+- [x] Web: show markers on the map
+- [x] Web: show a bottom-sheet card on a glass panel when a marker is tapped
 
 ### Phase 6: Activities module
 
-- [ ] Core: schema with `subcategory` (parks, culture, dining, outdoor), service and tests
-- [ ] Seed `activities.json` with sample entries
-- [ ] Web: add markers and cards, reusing the module contract
+- [x] Core: schema with `subcategory` (parks, culture, dining, outdoor), service and tests
+- [x] Seed `activities.json` with sample entries
+- [x] Web: add markers and cards, reusing the module contract
 
 ### Phase 7: Events module
 
-- [ ] Core: Upcoming/Recent selectors (Recent = ended within the last 30 days), with unit tests
-- [ ] Seed `events.json` with start and end dates (America/Montreal)
-- [ ] Web: add markers and cards, plus an events list with Upcoming and Recent tabs and a "Show on map" action
-- [ ] Add date display formatted per locale
+- [x] Core: Upcoming/Recent selectors (Recent = ended within the last 30 days), with unit tests
+- [x] Seed `events.json` with start and end dates (America/Montreal)
+- [x] Web: add markers and cards, plus an events list with Upcoming and Recent tabs and a "Show on map" action
+- [x] Add date display formatted per locale
 
 ### Phase 8: Trails module
 

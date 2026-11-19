@@ -1,0 +1,81 @@
+[
+  {
+    "id": "musee-du-haut-richelieu",
+    "category": "activities",
+    "name": { "fr": "Musée du Haut-Richelieu", "en": "Musée du Haut-Richelieu" },
+    "description": {
+      "fr": "Musée régional consacré à l'histoire du Haut-Richelieu, au cœur du Vieux-Saint-Jean. Fiche d'exemple : informations à vérifier.",
+      "en": "Regional museum devoted to the history of the Haut-Richelieu, in the heart of Old Saint-Jean. Sample entry: details to be verified."
+    },
+    "coordinates": [45.3069, -73.2546],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "subcategory": "culture"
+  },
+  {
+    "id": "parc-riverain-exemple",
+    "category": "activities",
+    "name": { "fr": "Parc riverain exemple", "en": "Sample Riverside Park" },
+    "description": {
+      "fr": "Parc fictif au bord du Richelieu servant de donnée d'exemple pour le développement.",
+      "en": "A fictional riverside park used as sample data during development."
+    },
+    "coordinates": [45.3112, -73.2511],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "subcategory": "parks"
+  },
+  {
+    "id": "parc-de-quartier-exemple",
+    "category": "activities",
+    "name": { "fr": "Parc de quartier exemple", "en": "Sample Neighbourhood Park" },
+    "description": {
+      "fr": "Parc fictif avec jeux pour enfants servant de donnée d'exemple pour le développement.",
+      "en": "A fictional park with a playground, used as sample data during development."
+    },
+    "coordinates": [45.2985, -73.2802],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "subcategory": "parks"
+  },
+  {
+    "id": "bistro-exemple",
+    "category": "activities",
+    "name": { "fr": "Bistro exemple", "en": "Sample Bistro" },
+    "description": {
+      "fr": "Restaurant fictif servant de donnée d'exemple pour le développement.",
+      "en": "A fictional restaurant used as sample data during development."
+    },
+    "coordinates": [45.3039, -73.2563],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "address": "Rue Champlain, Saint-Jean-sur-Richelieu",
+    "subcategory": "dining"
+  },
+  {
+    "id": "location-kayaks-exemple",
+    "category": "activities",
+    "name": { "fr": "Location de kayaks exemple", "en": "Sample Kayak Rentals" },
+    "description": {
+      "fr": "Activité nautique fictive sur le Richelieu servant de donnée d'exemple pour le développement.",
+      "en": "A fictional paddling activity on the Richelieu, used as sample data during development."
+    },
+    "coordinates": [45.3164, -73.2489],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "subcategory": "outdoor"
+  },
+  {
+    "id": "salle-de-spectacle-exemple",
+    "category": "activities",
+    "name": { "fr": "Salle de spectacle exemple", "en": "Sample Concert Hall" },
+    "description": {
+      "fr": "Salle de spectacle fictive servant de donnée d'exemple pour le développement.",
+      "en": "A fictional concert hall used as sample data during development."
+    },
+    "coordinates": [45.3091, -73.2621],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "subcategory": "culture"
+  }
+]

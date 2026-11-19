@@ -3,11 +3,9 @@
  * Leaflet types, so any map renderer (web today, native later) can use them.
  */
 
-/** `[latitude, longitude]` in decimal degrees. */
-export type LatLng = readonly [lat: number, lng: number]
+import type { LatLng, LatLngBounds } from '@/core/types/geo'
 
-/** `[southWest, northEast]` corners. */
-export type LatLngBounds = readonly [southWest: LatLng, northEast: LatLng]
+export type { LatLng, LatLngBounds }
 
 /** Saint-Jean-sur-Richelieu (old Saint-Jean, on the Richelieu River). */
 export const MAP_CENTER: LatLng = [45.3073, -73.2625]

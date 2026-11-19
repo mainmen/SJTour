@@ -7,6 +7,7 @@
   "nav": {
     "label": "Main navigation",
     "map": "Map",
+    "events": "Events",
     "list": "List",
     "about": "About"
   },
@@ -14,11 +15,71 @@
     "label": "Interactive map of Saint-Jean-sur-Richelieu",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
-    "loading": "Loading the map…"
+    "loading": "Loading the map…",
+    "marker": "{{name}}, {{category}}",
+    "loadError": "Couldn't load: {{categories}}.",
+    "retry": "Retry"
+  },
+  "categories": {
+    "companies": "Companies",
+    "activities": "Things to do",
+    "events": "Events",
+    "trails": "Trails"
+  },
+  "card": {
+    "close": "Close details",
+    "address": "Address",
+    "website": "Website",
+    "newTab": "(opens in a new tab)",
+    "lastVerified": "Last verified {{date}}",
+    "sample": "Sample data"
+  },
+  "companies": {
+    "kinds": {
+      "business": "Business",
+      "park": "Business park or district"
+    },
+    "sectors": {
+      "food": "Food",
+      "retail": "Retail",
+      "services": "Services",
+      "manufacturing": "Manufacturing",
+      "technology": "Technology",
+      "health": "Health",
+      "mixed": "Mixed"
+    }
+  },
+  "activities": {
+    "subcategories": {
+      "parks": "Parks",
+      "culture": "Culture & museums",
+      "dining": "Dining",
+      "outdoor": "Outdoor recreation"
+    }
+  },
+  "events": {
+    "tabsLabel": "Time period",
+    "upcoming": "Upcoming",
+    "recent": "Recent",
+    "emptyUpcoming": "No upcoming events right now.",
+    "emptyRecent": "No events ended in the last 30 days.",
+    "showOnMap": "Show on map",
+    "showOnMapNamed": "Show on map: {{name}}",
+    "dates": "Dates",
+    "loading": "Loading events…",
+    "loadError": "Couldn't load the events.",
+    "status": {
+      "upcoming": "Upcoming",
+      "recent": "Recently ended",
+      "past": "Ended"
+    }
   },
   "pages": {
     "map": {
       "title": "Map"
+    },
+    "events": {
+      "title": "Events"
     },
     "list": {
       "title": "List",

@@ -12,7 +12,7 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 - [x] `npm run test`: all tests pass
 - [x] `npm run build`: no errors or warnings
 - [x] `npm run ci` passes locally from a clean install
-- [ ] The CI run on the pull request is green (pending: PR opens after Phase 3)
+- [x] The CI run on the pull request is green (PR #5, merged as ecd24fe)
 
 ## 2. Translations
 
@@ -43,7 +43,7 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 
 ## 6. Bundle size
 
-- [ ] The before and after gzipped JS sizes are recorded in the PR description (78.88 kB → 96.86 kB gzipped; goes in the PR after Phase 3)
+- [x] The before and after gzipped JS sizes are recorded in the PR description (78.88 kB → 96.86 kB gzipped, in PR #5)
 - [x] The new size is well under the ~200 KB gzipped budget
 
 ## 7. Scope and hygiene

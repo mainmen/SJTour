@@ -43,4 +43,11 @@ describe('design tokens meet WCAG AA', () => {
       expect(contrastRatio(token('focus'), bg)).toBeGreaterThanOrEqual(AA_NON_TEXT)
     })
   }
+
+  it.each(['companies', 'activities', 'events', 'trails'])(
+    'white icons on the %s marker colour are at least 3:1',
+    (category) => {
+      expect(contrastRatio(white, token(`poi-${category}`))).toBeGreaterThanOrEqual(AA_NON_TEXT)
+    },
+  )
 })
