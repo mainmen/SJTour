@@ -1,4 +1,4 @@
-import { InfoIcon, ListIcon, MapIcon, type LucideIcon } from 'lucide-react'
+import { CalendarDaysIcon, InfoIcon, ListIcon, MapIcon, type LucideIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router'
 import { cx } from '@/web/ui/cx'
@@ -6,10 +6,15 @@ import { GlassCard } from '@/web/ui/GlassCard'
 import { pressableClass } from '@/web/ui/pressable'
 import { useRipple } from '@/web/ui/useRipple'
 
-type NavItemProps = { to: string; labelKey: 'nav.map' | 'nav.list' | 'nav.about'; Icon: LucideIcon }
+type NavItemProps = {
+  to: string
+  labelKey: 'nav.map' | 'nav.events' | 'nav.list' | 'nav.about'
+  Icon: LucideIcon
+}
 
 const navItems: readonly NavItemProps[] = [
   { to: '/', labelKey: 'nav.map', Icon: MapIcon },
+  { to: '/events', labelKey: 'nav.events', Icon: CalendarDaysIcon },
   { to: '/list', labelKey: 'nav.list', Icon: ListIcon },
   { to: '/about', labelKey: 'nav.about', Icon: InfoIcon },
 ]

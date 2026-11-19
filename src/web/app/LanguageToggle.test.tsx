@@ -27,12 +27,12 @@ describe('LanguageToggle', () => {
   it('switches the shell to English, updates <html lang> and saves the choice', async () => {
     const user = userEvent.setup()
     renderRoute('/')
-    expect(navLinkNames()).toEqual(['Carte', 'Liste', 'À propos'])
+    expect(navLinkNames()).toEqual(['Carte', 'Événements', 'Liste', 'À propos'])
     expect(localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBeNull()
 
     await user.click(toggle())
 
-    expect(navLinkNames()).toEqual(['Map', 'List', 'About'])
+    expect(navLinkNames()).toEqual(['Map', 'Events', 'List', 'About'])
     expect(screen.getByRole('navigation')).toHaveAccessibleName('Main navigation')
     expect(document.documentElement.lang).toBe('en')
     expect(localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBe('en')
@@ -46,7 +46,7 @@ describe('LanguageToggle', () => {
     renderRoute('/')
     await user.click(toggle())
     await user.click(toggle())
-    expect(navLinkNames()).toEqual(['Carte', 'Liste', 'À propos'])
+    expect(navLinkNames()).toEqual(['Carte', 'Événements', 'Liste', 'À propos'])
     expect(document.documentElement.lang).toBe('fr')
     expect(localStorage.getItem(LANGUAGE_STORAGE_KEY)).toBe('fr')
     expect(i18n.resolvedLanguage).toBe('fr')

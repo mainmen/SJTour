@@ -1,5 +1,5 @@
 import { XIcon } from 'lucide-react'
-import { useEffect, useId, useLayoutEffect, useRef, type RefObject } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { pickText } from '@/core/types/bilingual'
 import { useSelectedRecord } from '@/web/map/useSelectedRecord'
@@ -11,11 +11,6 @@ import { RippleButton } from '@/web/ui/RippleButton'
 /** Gap between the sheet and the nav, and between the sheet and the map controls above it. */
 const SHEET_GAP_PX = 8
 
-type BottomSheetProps = {
-  /** Element whose `--sheet-offset` lifts the map's bottom controls above the sheet. */
-  readonly offsetTarget: RefObject<HTMLElement | null>
-}
-
 /** Focuses the marker of `recordKey` (`category/id`), if it is on the map. */
 function focusMarker(recordKey: string) {
   document.querySelector<HTMLElement>(`[data-record="${CSS.escape(recordKey)}"]`)?.focus()
@@ -26,7 +21,7 @@ function focusMarker(recordKey: string) {
  * A non-modal dialog (specs/2026-11-19-companies D2): the map stays usable.
  * Focus moves to it when it opens, and back to the marker when it closes.
  */
-export function BottomSheet({ offsetTarget }: BottomSheetProps) {
+export function BottomSheet() {
   const { t } = useTranslation()
   const language = useLanguage()
   const selected = useSelectedRecord()
@@ -58,26 +53,24 @@ export function BottomSheet({ offsetTarget }: BottomSheetProps) {
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [recordKey])
 
-  // Lift the map's bottom controls and attribution above the sheet (D5).
+  // Lift the map's bottom controls and attribution above the sheet (D5), through
+  // `--sheet-offset` on the sheet's container (which also holds the map). The
+  // sheet's own ref is used: a parent's ref isn't attached yet when both mount
+  // in the same commit (e.g. arriving from "Show on map" with the sheet open).
   useLayoutEffect(() => {
-    const target = offsetTarget.current
     const sheet = sheetRef.current
-    if (!target) return
-    if (!sheet) {
-      target.style.removeProperty('--sheet-offset')
-      return
-    }
+    const container = sheet?.parentElement
+    if (!sheet || !container) return
     const update = () =>
-      target.style.setProperty('--sheet-offset', `${sheet.offsetHeight + SHEET_GAP_PX}px`)
+      container.style.setProperty('--sheet-offset', `${sheet.offsetHeight + SHEET_GAP_PX}px`)
     update()
-    if (typeof ResizeObserver === 'undefined') return
-    const observer = new ResizeObserver(update)
-    observer.observe(sheet)
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(update)
+    observer?.observe(sheet)
     return () => {
-      observer.disconnect()
-      target.style.removeProperty('--sheet-offset')
+      observer?.disconnect()
+      container.style.removeProperty('--sheet-offset')
     }
-  }, [offsetTarget, recordKey])
+  }, [recordKey])
 
   if (!selected) return null
   const { module, record } = selected

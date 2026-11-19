@@ -7,6 +7,7 @@
   "nav": {
     "label": "Main navigation",
     "map": "Map",
+    "events": "Events",
     "list": "List",
     "about": "About"
   },
@@ -56,9 +57,29 @@
       "outdoor": "Outdoor recreation"
     }
   },
+  "events": {
+    "tabsLabel": "Time period",
+    "upcoming": "Upcoming",
+    "recent": "Recent",
+    "emptyUpcoming": "No upcoming events right now.",
+    "emptyRecent": "No events ended in the last 30 days.",
+    "showOnMap": "Show on map",
+    "showOnMapNamed": "Show on map: {{name}}",
+    "dates": "Dates",
+    "loading": "Loading events…",
+    "loadError": "Couldn't load the events.",
+    "status": {
+      "upcoming": "Upcoming",
+      "recent": "Recently ended",
+      "past": "Ended"
+    }
+  },
   "pages": {
     "map": {
       "title": "Map"
+    },
+    "events": {
+      "title": "Events"
     },
     "list": {
       "title": "List",

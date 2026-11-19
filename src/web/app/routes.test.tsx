@@ -5,6 +5,7 @@ import { i18n } from '@/web/i18n'
 
 const pages = [
   { path: '/', title: i18n.t('pages.map.title'), navLabel: i18n.t('nav.map') },
+  { path: '/events', title: i18n.t('pages.events.title'), navLabel: i18n.t('nav.events') },
   { path: '/list', title: i18n.t('pages.list.title'), navLabel: i18n.t('nav.list') },
   { path: '/about', title: i18n.t('pages.about.title'), navLabel: i18n.t('nav.about') },
 ]

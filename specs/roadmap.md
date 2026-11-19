@@ -57,10 +57,10 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 7: Events module
 
-- [ ] Core: Upcoming/Recent selectors (Recent = ended within the last 30 days), with unit tests
-- [ ] Seed `events.json` with start and end dates (America/Montreal)
-- [ ] Web: add markers and cards, plus an events list with Upcoming and Recent tabs and a "Show on map" action
-- [ ] Add date display formatted per locale
+- [x] Core: Upcoming/Recent selectors (Recent = ended within the last 30 days), with unit tests
+- [x] Seed `events.json` with start and end dates (America/Montreal)
+- [x] Web: add markers and cards, plus an events list with Upcoming and Recent tabs and a "Show on map" action
+- [x] Add date display formatted per locale
 
 ### Phase 8: Trails module
 

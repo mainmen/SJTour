@@ -7,6 +7,7 @@
   "nav": {
     "label": "Navigation principale",
     "map": "Carte",
+    "events": "Événements",
     "list": "Liste",
     "about": "À propos"
   },
@@ -56,9 +57,29 @@
       "outdoor": "Plein air"
     }
   },
+  "events": {
+    "tabsLabel": "Période",
+    "upcoming": "À venir",
+    "recent": "Récents",
+    "emptyUpcoming": "Aucun événement à venir pour le moment.",
+    "emptyRecent": "Aucun événement terminé au cours des 30 derniers jours.",
+    "showOnMap": "Voir sur la carte",
+    "showOnMapNamed": "Voir sur la carte : {{name}}",
+    "dates": "Dates",
+    "loading": "Chargement des événements…",
+    "loadError": "Impossible de charger les événements.",
+    "status": {
+      "upcoming": "À venir",
+      "recent": "Terminé récemment",
+      "past": "Terminé"
+    }
+  },
   "pages": {
     "map": {
       "title": "Carte"
+    },
+    "events": {
+      "title": "Événements"
     },
     "list": {
       "title": "Liste",

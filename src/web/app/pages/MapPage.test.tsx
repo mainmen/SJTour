@@ -48,6 +48,24 @@ describe('MapPage', () => {
     expect(within(sheet).getByText('Culture et musées')).toBeInTheDocument()
   })
 
+  it('shows event markers for upcoming and recent events, not past ones', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(new Date('2026-11-19T12:00:00-05:00'))
+    try {
+      render(<MapPage />)
+      const markers = await screen.findAllByRole('button', { name: /, Événements$/ })
+      expect(markers.map((m) => m.getAttribute('aria-label'))).toEqual([
+        'Marché de Noël exemple, Événements',
+        'Concert exemple, Événements',
+        "L'International de montgolfières, Événements",
+        "Marché d'automne exemple, Événements",
+        'Course à pied exemple, Événements',
+      ])
+    } finally {
+      vi.useRealTimers()
+    }
+  })
+
   it('names markers in the active language', async () => {
     render(<MapPage />)
     await marker(BAKERY)
@@ -135,6 +153,8 @@ describe('MapPage', () => {
     expect(
       await screen.findByRole('dialog', { name: 'Atelier techno exemple' }),
     ).toBeInTheDocument()
+    // The sheet is open from the first render: the controls still move above it.
+    expect(container.querySelector('section')!.style.getPropertyValue('--sheet-offset')).toBe('8px')
     await waitFor(() => {
       const zooms = [...container.querySelectorAll<HTMLImageElement>('img.leaflet-tile')].map(
         (img) => new URL(img.src).pathname.split('/')[1],

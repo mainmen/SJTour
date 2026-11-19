@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BottomSheet } from '@/web/map/BottomSheet'
 import { CategoryMarkers } from '@/web/map/CategoryMarkers'
@@ -15,14 +15,13 @@ import { catalogStore } from '@/web/state/stores'
  */
 export function MapPage() {
   const { t } = useTranslation()
-  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     for (const module of webModules) void catalogStore.getState().load(module.core)
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative size-full">
+    <section className="relative size-full">
       <h2 className="sr-only">{t('pages.map.title')}</h2>
       <MapCanvas>
         {webModules.map((module) => (
@@ -31,7 +30,7 @@ export function MapPage() {
         <RevealSelection />
       </MapCanvas>
       <LoadErrors modules={webModules} />
-      <BottomSheet offsetTarget={sectionRef} />
+      <BottomSheet />
     </section>
   )
 }
