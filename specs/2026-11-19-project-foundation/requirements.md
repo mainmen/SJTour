@@ -13,6 +13,7 @@ This phase ships no user-facing features: no map, no i18n, no routing and no con
 ## Scope
 
 ### In scope
+
 1. **Scaffold:** Vite + React 18 + TypeScript, at the repository root.
 2. **TypeScript:** strict mode, plus the `@/` path alias mapped to `src/` in both `tsconfig` and Vite.
 3. **Linting:** ESLint (flat config) with the TypeScript, React Hooks and React Refresh rules, and Prettier compatibility.
@@ -23,6 +24,7 @@ This phase ships no user-facing features: no map, no i18n, no routing and no con
 8. **Project hygiene:** `.gitignore`, `.nvmrc`, an `engines` field, a minimal `README.md` with the scripts listed, and `index.html` with `lang="fr"`, a viewport meta tag and the title "StJeanTour".
 
 ### Out of scope (later phases)
+
 - The app shell, layout and routing (Phase 1)
 - i18n and the language toggle (Phase 2)
 - Leaflet and the map (Phase 3)
@@ -32,30 +34,30 @@ This phase ships no user-facing features: no map, no i18n, no routing and no con
 
 ## Decisions
 
-| # | Decision | Rationale |
-|---|---|---|
-| D1 | **Tailwind CSS v4** via the `@tailwindcss/vite` plugin. There is no `tailwind.config.js` or PostCSS config; theme tokens go in CSS with `@theme`. | This is the current major version. It's simpler to set up and builds faster. |
-| D2 | **Node 24 LTS** is pinned in `.nvmrc` and `package.json` `engines` (`>=24`), and CI uses Node 24. | LTS is stable for CI and hosting. The local Node 26 still satisfies `>=24`. |
-| D3 | **GitHub Actions** for CI, running on `push` and `pull_request` to `main`. | It's the standard choice and works with GitHub-based static hosting later. |
-| D4 | **npm** is the package manager, and `package-lock.json` is committed. CI uses `npm ci`. | Per the tech stack. |
-| D5 | **One commit per task group** in `plan.md`. Each commit leaves the repo in a green state. | Small, reviewable history. Any commit can be bisected. |
-| D6 | **React 18** is pinned, even if the Vite template defaults to a newer major. | Per the tech stack. This avoids drift until we decide to upgrade on purpose. |
-| D7 | `lang="fr"` on `<html>`. | French is the default language (mission). |
-| D8 | ESLint uses the flat config (`eslint.config.js`), and `eslint-config-prettier` turns off stylistic rules. | Current ESLint standard. Prettier owns formatting. |
+| #   | Decision                                                                                                                                          | Rationale                                                                    |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| D1  | **Tailwind CSS v4** via the `@tailwindcss/vite` plugin. There is no `tailwind.config.js` or PostCSS config; theme tokens go in CSS with `@theme`. | This is the current major version. It's simpler to set up and builds faster. |
+| D2  | **Node 24 LTS** is pinned in `.nvmrc` and `package.json` `engines` (`>=24`), and CI uses Node 24.                                                 | LTS is stable for CI and hosting. The local Node 26 still satisfies `>=24`.  |
+| D3  | **GitHub Actions** for CI, running on `push` and `pull_request` to `main`.                                                                        | It's the standard choice and works with GitHub-based static hosting later.   |
+| D4  | **npm** is the package manager, and `package-lock.json` is committed. CI uses `npm ci`.                                                           | Per the tech stack.                                                          |
+| D5  | **One commit per task group** in `plan.md`. Each commit leaves the repo in a green state.                                                         | Small, reviewable history. Any commit can be bisected.                       |
+| D6  | **React 18** is pinned, even if the Vite template defaults to a newer major.                                                                      | Per the tech stack. This avoids drift until we decide to upgrade on purpose. |
+| D7  | `lang="fr"` on `<html>`.                                                                                                                          | French is the default language (mission).                                    |
+| D8  | ESLint uses the flat config (`eslint.config.js`), and `eslint-config-prettier` turns off stylistic rules.                                         | Current ESLint standard. Prettier owns formatting.                           |
 
 ## Required npm scripts
 
-| Script | Purpose |
-|---|---|
-| `dev` | Start the Vite dev server |
-| `build` | Typecheck the project, then run the Vite production build |
-| `preview` | Serve the production build |
-| `lint` | Run ESLint on the repository with zero warnings allowed |
-| `typecheck` | Run `tsc -b --noEmit` (or equivalent) |
-| `format` | Run Prettier in write mode |
-| `format:check` | Run Prettier in check mode |
-| `test` | Run Vitest once (CI mode) |
-| `test:watch` | Run Vitest in watch mode |
+| Script         | Purpose                                                   |
+| -------------- | --------------------------------------------------------- |
+| `dev`          | Start the Vite dev server                                 |
+| `build`        | Typecheck the project, then run the Vite production build |
+| `preview`      | Serve the production build                                |
+| `lint`         | Run ESLint on the repository with zero warnings allowed   |
+| `typecheck`    | Run `tsc -b --noEmit` (or equivalent)                     |
+| `format`       | Run Prettier in write mode                                |
+| `format:check` | Run Prettier in check mode                                |
+| `test`         | Run Vitest once (CI mode)                                 |
+| `test:watch`   | Run Vitest in watch mode                                  |
 
 ## Constraints
 
