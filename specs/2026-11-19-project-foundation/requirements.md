@@ -64,7 +64,8 @@ This phase ships no user-facing features: no map, no i18n, no routing and no con
 - No API keys, analytics or tracking.
 - No runtime dependencies beyond `react` and `react-dom`.
 
-## Open items
+## Notes
 
-- A GitHub remote doesn't exist yet. The CI workflow will be committed now, but it can only be shown passing once the repo is pushed.
-- The repo has no commits on `main` yet. Before opening the first PR, decide whether to commit `specs/` to `main` first.
+- Remote: `https://github.com/mainmen/SJTour`. The constitution is on `main`, and the CI workflow from task group 5 runs on this branch's pull request.
+- The constitution was updated on this branch (after reviewing `specs/SPEC.md`) to add a core/web split, Zustand, Lucide, a visual style and new features. None of that changes Phase 0 scope: the `src/core/` and `src/web/` folders arrive in Phase 1.
+- Add `.gitattributes` with `* text=auto eol=lf` in task group 1, so Windows line endings don't break `format:check` in CI.
