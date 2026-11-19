@@ -12,7 +12,7 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 - [x] `npm run test`: all tests pass, including the boundary and routing tests
 - [x] `npm run build`: no errors or warnings
 - [x] `npm run ci` passes locally from a clean install
-- [ ] The CI run on the pull request is green (no PR opened yet)
+- [x] The CI run on the pull request is green (PR #3)
 
 ## 2. Layer structure
 
@@ -60,7 +60,7 @@ Run `npm run dev` and check in browser devtools:
 
 ## 7. Bundle size
 
-- [ ] The baseline gzipped JS size (before this phase) and the new size are both recorded in the PR description (no PR yet; measured: 45.77 kB → 78.42 kB gzipped, of which lucide-react ≈ 2.5 kB and react-router ≈ 30 kB)
+- [x] The baseline gzipped JS size (before this phase) and the new size are both recorded in the PR description (PR #3: 45.77 kB → 78.42 kB gzipped, of which lucide-react ≈ 2.5 kB and react-router ≈ 30 kB)
 - [x] The new size is well under the ~200 KB gzipped budget
 - [x] Only the three used Lucide icons end up in the bundle (no full icon set)
 
@@ -69,6 +69,6 @@ Run `npm run dev` and check in browser devtools:
 - [x] The only new runtime dependencies are `react-router` and `lucide-react`
 - [x] No hard-coded user-facing strings outside `src/web/app/strings.ts`
 - [x] No glass/ripple components, i18n, map or data code (later phases)
-- [ ] The PR description notes that the production host needs an SPA fallback (D3)
+- [x] The PR description notes that the production host needs an SPA fallback (D3, PR #3)
 - [x] One commit per task group in `plan.md`, with conventional commit messages
 - [x] Phase 1 is checked off in `specs/roadmap.md`

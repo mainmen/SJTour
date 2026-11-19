@@ -29,5 +29,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
-  "exclude": ["src/**/*.lint.test.ts"]
+  "exclude": ["src/**/*.lint.test.ts", "src/**/*.node.test.ts"]
 }

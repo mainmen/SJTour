@@ -9,7 +9,7 @@ export function NotFoundPage() {
       <p>{t.message}</p>
       <Link
         to="/"
-        className="mt-3 inline-block font-medium text-sky-800 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700"
+        className="mt-3 inline-block font-medium text-accent underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
       >
         {t.backHome}
       </Link>
