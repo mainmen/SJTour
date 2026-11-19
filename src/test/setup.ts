@@ -31,6 +31,14 @@ if (typeof window !== 'undefined') {
   beforeEach(async () => {
     await i18n.changeLanguage('fr')
   })
+
+  // Every test starts with empty app stores, and `fetch` serving the shipped
+  // data files (tests can re-stub it with overrides).
+  const { resetAppStores, stubDataFetch } = await import('@/test/data')
+  beforeEach(() => {
+    resetAppStores()
+    stubDataFetch()
+  })
 }
 
 afterEach(() => {

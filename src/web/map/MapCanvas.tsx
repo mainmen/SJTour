@@ -1,6 +1,6 @@
 import 'leaflet/dist/leaflet.css'
 import '@/web/map/map.css'
-import { useEffect } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MapContainer, TileLayer, useMap, ZoomControl } from 'react-leaflet'
 import {
@@ -47,8 +47,8 @@ function TranslatedZoomControl() {
   )
 }
 
-/** Full-size OpenStreetMap base map of Saint-Jean-sur-Richelieu. */
-export function MapCanvas() {
+/** Full-size OpenStreetMap base map of Saint-Jean-sur-Richelieu. Children are map layers. */
+export function MapCanvas({ children }: { children?: ReactNode }) {
   return (
     <MapContainer
       className="map-canvas size-full"
@@ -63,6 +63,7 @@ export function MapCanvas() {
       <TileLayer url={OSM_TILE_URL} attribution={OSM_ATTRIBUTION} maxZoom={MAX_ZOOM} />
       <TranslatedZoomControl />
       <MapAccessibleName />
+      {children}
     </MapContainer>
   )
 }

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "parc-industriel-iberville",
+    "category": "companies",
+    "name": { "fr": "Parc industriel Iberville", "en": "Iberville Industrial Park" },
+    "description": {
+      "fr": "Parc industriel du secteur Iberville, sur la rive est du Richelieu. Fiche d'exemple : informations à vérifier.",
+      "en": "Industrial park in the Iberville sector, on the east bank of the Richelieu. Sample entry: details to be verified."
+    },
+    "coordinates": [45.3215, -73.231],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "sector": "manufacturing",
+    "kind": "park"
+  },
+  {
+    "id": "vieux-saint-jean",
+    "category": "companies",
+    "name": { "fr": "Vieux-Saint-Jean", "en": "Old Saint-Jean" },
+    "description": {
+      "fr": "Centre-ville historique au bord du Richelieu : commerces, restaurants et services. Fiche d'exemple : informations à vérifier.",
+      "en": "Historic downtown on the Richelieu: shops, restaurants and services. Sample entry: details to be verified."
+    },
+    "coordinates": [45.3058, -73.2533],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "address": "Rue Richelieu, Saint-Jean-sur-Richelieu",
+    "sector": "mixed",
+    "kind": "park"
+  },
+  {
+    "id": "boulangerie-exemple",
+    "category": "companies",
+    "name": { "fr": "Boulangerie exemple", "en": "Sample Bakery" },
+    "description": {
+      "fr": "Commerce fictif servant de donnée d'exemple pour le développement.",
+      "en": "A fictional business used as sample data during development."
+    },
+    "coordinates": [45.3047, -73.2551],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "address": "Rue Richelieu, Saint-Jean-sur-Richelieu",
+    "website": "https://example.com/",
+    "sector": "food",
+    "kind": "business"
+  },
+  {
+    "id": "quincaillerie-exemple",
+    "category": "companies",
+    "name": { "fr": "Quincaillerie exemple", "en": "Sample Hardware Store" },
+    "description": {
+      "fr": "Commerce fictif servant de donnée d'exemple pour le développement.",
+      "en": "A fictional business used as sample data during development."
+    },
+    "coordinates": [45.318, -73.27],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "sector": "retail",
+    "kind": "business"
+  },
+  {
+    "id": "clinique-exemple",
+    "category": "companies",
+    "name": { "fr": "Clinique exemple", "en": "Sample Clinic" },
+    "description": {
+      "fr": "Service de santé fictif servant de donnée d'exemple pour le développement.",
+      "en": "A fictional health service used as sample data during development."
+    },
+    "coordinates": [45.295, -73.268],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "sector": "health",
+    "kind": "business"
+  },
+  {
+    "id": "atelier-techno-exemple",
+    "category": "companies",
+    "name": { "fr": "Atelier techno exemple", "en": "Sample Tech Workshop" },
+    "description": {
+      "fr": "Entreprise technologique fictive servant de donnée d'exemple pour le développement.",
+      "en": "A fictional technology company used as sample data during development."
+    },
+    "coordinates": [45.329, -73.285],
+    "lastVerified": "2026-11-19",
+    "sample": true,
+    "website": "https://example.com/",
+    "sector": "technology",
+    "kind": "business"
+  }
+]

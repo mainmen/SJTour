@@ -14,7 +14,39 @@
     "label": "Carte interactive de Saint-Jean-sur-Richelieu",
     "zoomIn": "Zoom avant",
     "zoomOut": "Zoom arrière",
-    "loading": "Chargement de la carte…"
+    "loading": "Chargement de la carte…",
+    "marker": "{{name}}, {{category}}",
+    "loadError": "Impossible de charger : {{categories}}.",
+    "retry": "Réessayer"
+  },
+  "categories": {
+    "companies": "Entreprises",
+    "activities": "Activités",
+    "events": "Événements",
+    "trails": "Sentiers"
+  },
+  "card": {
+    "close": "Fermer la fiche",
+    "address": "Adresse",
+    "website": "Site web",
+    "newTab": "(s'ouvre dans un nouvel onglet)",
+    "lastVerified": "Vérifié le {{date}}",
+    "sample": "Donnée d'exemple"
+  },
+  "companies": {
+    "kinds": {
+      "business": "Entreprise",
+      "park": "Parc industriel ou quartier d'affaires"
+    },
+    "sectors": {
+      "food": "Alimentation",
+      "retail": "Commerce de détail",
+      "services": "Services",
+      "manufacturing": "Fabrication",
+      "technology": "Technologie",
+      "health": "Santé",
+      "mixed": "Mixte"
+    }
   },
   "pages": {
     "map": {

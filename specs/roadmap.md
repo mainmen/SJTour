@@ -44,10 +44,10 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 5: Companies module
 
-- [ ] Core: schema (with `sector` and `kind`), service and unit tests
-- [ ] Seed `companies.json` with sample entries flagged `sample: true`, including an industrial park
-- [ ] Web: show markers on the map
-- [ ] Web: show a bottom-sheet card on a glass panel when a marker is tapped
+- [x] Core: schema (with `sector` and `kind`), service and unit tests
+- [x] Seed `companies.json` with sample entries flagged `sample: true`, including an industrial park
+- [x] Web: show markers on the map
+- [x] Web: show a bottom-sheet card on a glass panel when a marker is tapped
 
 ### Phase 6: Activities module
 

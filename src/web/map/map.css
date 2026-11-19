@@ -8,8 +8,12 @@
 .map-canvas .leaflet-top {
   top: calc(var(--shell-bar-height) + 1px + env(safe-area-inset-top));
 }
+/* --sheet-offset: height of the open bottom sheet (BottomSheet.tsx), so the zoom
+   buttons and the OSM attribution stay visible above it. */
 .map-canvas .leaflet-bottom {
-  bottom: calc(var(--shell-bar-height) + 1px + env(safe-area-inset-bottom));
+  bottom: calc(
+    var(--shell-bar-height) + 1px + env(safe-area-inset-bottom) + var(--sheet-offset, 0px)
+  );
 }
 .map-canvas .leaflet-left {
   left: env(safe-area-inset-left);
@@ -48,4 +52,70 @@
 }
 .map-canvas .leaflet-control-attribution a {
   color: var(--color-accent);
+}
+
+/*
+ * Category markers (PoiMarker.tsx): a 44 × 44 px tap target holding a round pin
+ * with the category icon. Category = icon + colour, never colour alone.
+ */
+.map-canvas .poi-marker {
+  --poi-color: var(--color-accent);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: none;
+  border: 0;
+  border-radius: 9999px;
+}
+.map-canvas .poi-marker--companies {
+  --poi-color: var(--color-poi-companies);
+}
+.map-canvas .poi-marker--activities {
+  --poi-color: var(--color-poi-activities);
+}
+.map-canvas .poi-marker--events {
+  --poi-color: var(--color-poi-events);
+}
+.map-canvas .poi-marker--trails {
+  --poi-color: var(--color-poi-trails);
+}
+
+.map-canvas .poi-marker__pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 2px;
+  color: #ffffff;
+  background-color: var(--poi-color);
+  border: 2px solid #ffffff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 1px 4px rgb(15 23 42 / 0.45);
+}
+.map-canvas .poi-marker__icon {
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+}
+
+/* Selected: larger pin with a dark ring (shape change, not colour only). */
+.map-canvas .poi-marker.is-selected .poi-marker__pin {
+  width: 40px;
+  height: 40px;
+  border-color: var(--color-ink);
+  border-width: 3px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .map-canvas .poi-marker__pin {
+    transition:
+      width 150ms ease-out,
+      height 150ms ease-out;
+  }
+}
+
+.map-canvas .poi-marker:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 0;
 }

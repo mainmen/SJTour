@@ -1,13 +1,7 @@
 import { useCallback, useRef, useState, type PointerEvent, type ReactNode } from 'react'
+import { prefersReducedMotion } from '@/web/ui/motion'
 
 type Ripple = { id: number; x: number; y: number; size: number }
-
-function prefersReducedMotion(): boolean {
-  return (
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  )
-}
 
 /**
  * Tap feedback: on pointer down, renders an expanding circle from the tap point.

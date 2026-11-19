@@ -31,3 +31,6 @@ export function resolveInitialLanguage(
   }
   return DEFAULT_LANGUAGE
 }
+
+/** BCP 47 locale used for dates and sorting: Canadian French and English. */
+export const LOCALES: Record<Language, string> = { fr: 'fr-CA', en: 'en-CA' }
