@@ -6,10 +6,10 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 0: Project foundation
 
-- [ ] Scaffold Vite + React + TypeScript (strict)
-- [ ] Add ESLint, Prettier, Vitest, and the `@/` path alias
-- [ ] Add Tailwind CSS with mobile-first base styles
-- [ ] Add a basic CI workflow (lint, typecheck, test, build)
+- [x] Scaffold Vite + React + TypeScript (strict)
+- [x] Add ESLint, Prettier, Vitest, and the `@/` path alias
+- [x] Add Tailwind CSS with mobile-first base styles
+- [x] Add a basic CI workflow (lint, typecheck, test, build)
 
 ### Phase 1: App shell
 
