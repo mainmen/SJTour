@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router'
 import { eventsModule } from '@/core/modules/events/module'
 import type { EventRecord } from '@/core/modules/events/schema'
 import { selectRecent, selectUpcoming } from '@/core/modules/events/selectors'
 import { selectCollection } from '@/core/store/catalog'
+import { eventsWebModule } from '@/web/modules/events'
 import { EventList } from '@/web/modules/events/EventList'
-import { catalogStore, selectionStore, useAppStore } from '@/web/state/stores'
+import { catalogStore, useAppStore } from '@/web/state/stores'
+import { useShowOnMap } from '@/web/state/useShowOnMap'
 import { RippleButton } from '@/web/ui/RippleButton'
 import { Tabs } from '@/web/ui/Tabs'
 
@@ -16,7 +17,7 @@ import { Tabs } from '@/web/ui/Tabs'
  */
 export function EventsPage() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const showOnMapFor = useShowOnMap()
   const collection = useAppStore(catalogStore, (state) => selectCollection(state, eventsModule))
   const [now] = useState(() => new Date())
 
@@ -32,10 +33,7 @@ export function EventsPage() {
     }
   }, [collection, now])
 
-  const showOnMap = (event: EventRecord) => {
-    selectionStore.getState().select({ category: 'events', id: event.id, origin: 'list' })
-    void navigate('/')
-  }
+  const showOnMap = (event: EventRecord) => showOnMapFor(eventsWebModule, event)
 
   return (
     <section className="mx-auto max-w-md p-4">

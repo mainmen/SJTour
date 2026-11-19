@@ -1,7 +1,9 @@
-import { XIcon } from 'lucide-react'
+import { ChevronRightIcon, XIcon } from 'lucide-react'
 import { useEffect, useId, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router'
 import { pickText } from '@/core/types/bilingual'
+import { recordPath } from '@/web/app/paths'
 import { useSelectedRecord } from '@/web/map/useSelectedRecord'
 import { selectionStore } from '@/web/state/stores'
 import { useLanguage } from '@/web/state/useLanguage'
@@ -108,6 +110,14 @@ export function BottomSheet() {
         </div>
         <div className="overflow-y-auto px-4 pb-4">
           <Card record={record} />
+          <Link
+            to={recordPath({ category: module.id, id: record.id })}
+            aria-label={t('card.detailsNamed', { name: pickText(record.name, language) })}
+            className="mt-3 flex min-h-11 items-center justify-center gap-1 rounded-lg border border-accent px-3 text-sm font-semibold text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          >
+            {t('card.details')}
+            <ChevronRightIcon aria-hidden="true" className="size-4" />
+          </Link>
         </div>
       </GlassCard>
     </div>

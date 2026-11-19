@@ -1,6 +1,7 @@
 import { activitiesModule } from '@/core/modules/activities/module'
 import { companiesModule } from '@/core/modules/companies/module'
 import { eventsModule } from '@/core/modules/events/module'
+import { trailsModule } from '@/core/modules/trails/module'
 import type { CoreCategoryModule } from '@/core/types/module'
 
 /**
@@ -11,4 +12,5 @@ export const coreModules: readonly CoreCategoryModule[] = [
   companiesModule,
   activitiesModule,
   eventsModule,
+  trailsModule,
 ]

@@ -64,26 +64,26 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 8: Trails module
 
-- [ ] Seed `trails.geojson` with 2 or 3 trails, including La Route verte and the Chambly Canal path
-- [ ] Render separate walking and biking layers (`both` trails appear in each)
-- [ ] Show a trail card with length, difficulty and surface
+- [x] Seed `trails.geojson` with 2 or 3 trails, including La Route verte and the Chambly Canal path
+- [x] Render separate walking and biking layers (`both` trails appear in each)
+- [x] Show a trail card with length, difficulty and surface
 
 ### Phase 9: Category filtering
 
-- [ ] Core: add a Zustand filter store and filter selectors, with unit tests
-- [ ] Web: add layer toggle chips (`FilterChips`) for Companies, Things to do, Events, Walking paths and Biking paths
-- [ ] Mirror the filter state to URL query params so views can be shared
+- [x] Core: add a Zustand filter store and filter selectors, with unit tests
+- [x] Web: add layer toggle chips (`FilterChips`) for Companies, Things to do, Events, Walking paths and Biking paths
+- [x] Mirror the filter state to URL query params so views can be shared
 
 ### Phase 10: Detail view
 
-- [ ] Add a `/:category/:id` detail route with full info
-- [ ] Add a "Directions" button that hands off to the device's maps app
-- [ ] Make the URL deep-linkable and shareable
+- [x] Add a `/:category/:id` detail route with full info
+- [x] Add a "Directions" button that hands off to the device's maps app
+- [x] Make the URL deep-linkable and shareable
 
 ### Phase 11: List view
 
-- [ ] Add an accessible list of all visible items, using the same filters as the map
-- [ ] Sync the map and list (selecting an item in the list focuses it on the map)
+- [x] Add an accessible list of all visible items, using the same filters as the map
+- [x] Sync the map and list (selecting an item in the list focuses it on the map)
 
 ### Phase 12: Search
 

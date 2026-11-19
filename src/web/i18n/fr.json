@@ -26,13 +26,23 @@
     "events": "Événements",
     "trails": "Sentiers"
   },
+  "layers": {
+    "label": "Couches de la carte",
+    "companies": "Entreprises",
+    "activities": "Activités",
+    "events": "Événements",
+    "walking": "Sentiers pédestres",
+    "biking": "Pistes cyclables"
+  },
   "card": {
     "close": "Fermer la fiche",
     "address": "Adresse",
     "website": "Site web",
     "newTab": "(s'ouvre dans un nouvel onglet)",
     "lastVerified": "Vérifié le {{date}}",
-    "sample": "Donnée d'exemple"
+    "sample": "Donnée d'exemple",
+    "details": "Fiche complète",
+    "detailsNamed": "Fiche complète : {{name}}"
   },
   "companies": {
     "kinds": {
@@ -74,6 +84,58 @@
       "past": "Terminé"
     }
   },
+  "trails": {
+    "length": "Longueur",
+    "difficulty": "Difficulté",
+    "surface": "Revêtement",
+    "types": {
+      "walk": "Marche",
+      "bike": "Vélo",
+      "both": "Marche et vélo"
+    },
+    "difficulties": {
+      "easy": "Facile",
+      "moderate": "Intermédiaire",
+      "difficult": "Difficile"
+    },
+    "surfaces": {
+      "paved": "Asphalte",
+      "gravel": "Gravier",
+      "dirt": "Terre battue",
+      "boardwalk": "Trottoir de bois",
+      "mixed": "Mixte"
+    },
+    "networks": {
+      "route-verte": "Route verte"
+    }
+  },
+  "detail": {
+    "back": "Retour",
+    "loading": "Chargement de la fiche…",
+    "loadError": "Impossible de charger cette fiche.",
+    "directions": "Itinéraire",
+    "directionsHint": "(ouvre l'application de cartes)",
+    "share": "Partager",
+    "copied": "Lien copié dans le presse-papiers.",
+    "shareFailed": "Impossible de partager. Lien : {{url}}",
+    "documentTitle": "{{name}} — {{appName}}",
+    "notFound": {
+      "title": "Fiche introuvable",
+      "message": "Ce lieu n'existe pas ou a été retiré."
+    }
+  },
+  "list": {
+    "loading": "Chargement de la liste…",
+    "count_one": "{{count}} élément affiché",
+    "count_other": "{{count}} éléments affichés",
+    "categoryCount": "{{category}} ({{count}})",
+    "empty": "Aucun élément pour le moment.",
+    "noLayers": "Aucune couche sélectionnée.",
+    "showAll": "Tout afficher",
+    "loadError": "Impossible de charger : {{category}}.",
+    "showOnMapNamed": "Voir sur la carte : {{name}}",
+    "selected": "Sélectionné sur la carte"
+  },
   "pages": {
     "map": {
       "title": "Carte"
@@ -82,8 +144,7 @@
       "title": "Événements"
     },
     "list": {
-      "title": "Liste",
-      "placeholder": "La liste des lieux et des événements arrive bientôt."
+      "title": "Liste"
     },
     "about": {
       "title": "À propos",

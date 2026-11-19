@@ -5,7 +5,7 @@ The Phase 5 commit (and the combined Phase 4–7 PR) on `feature/content-modules
 ## 1. Automated checks
 
 - [x] `npm run ci` passes locally from a clean install
-- [ ] The CI run on the pull request is green
+- [x] The CI run on the pull request is green
 
 ## 2. Core
 

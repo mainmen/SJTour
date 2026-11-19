@@ -1,6 +1,8 @@
 import type { z } from 'zod'
+import type { MapLayer } from '@/core/filters/layers'
 import type { BaseRecord } from '@/core/schemas/base'
 import type { CategoryId } from '@/core/types/category'
+import type { LatLngBounds } from '@/core/types/geo'
 
 /**
  * Core side of a category module: everything needed to load, validate and
@@ -12,8 +14,21 @@ export interface CoreCategoryModule<T extends BaseRecord = BaseRecord> {
   readonly dataFile: string
   /** Validates one record. */
   readonly recordSchema: z.ZodType<T>
+  /**
+   * Turns the whole data file into the list of raw records that `recordSchema`
+   * then validates one by one (e.g. a GeoJSON FeatureCollection into its
+   * features' properties). When absent, the file must be a JSON array of records.
+   */
+  readonly fileSchema?: z.ZodType<unknown[]>
+  /** The map layers this module's records belong to (FilterChips toggles them). */
+  readonly layers: readonly MapLayer<T>[]
   /** Records drawn on the map at time `now`. All records when absent. */
   visibleOnMap?(records: readonly T[], now: Date): readonly T[]
+  /**
+   * The area a record covers, for records drawn as shapes (trails). The map
+   * fits it when the record is shown from a list. Point records leave it out.
+   */
+  extentOf?(record: T): LatLngBounds
 }
 
 /** Marker styles; each maps to a colour and is always paired with the category icon. */

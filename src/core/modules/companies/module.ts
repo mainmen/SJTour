@@ -3,6 +3,7 @@ import type { CoreCategoryModule } from '@/core/types/module'
 
 export const companiesModule: CoreCategoryModule<Company> = {
   id: 'companies',
+  layers: [{ id: 'companies' }],
   dataFile: 'data/companies.json',
   recordSchema: companySchema,
 }

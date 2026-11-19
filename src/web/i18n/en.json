@@ -26,13 +26,23 @@
     "events": "Events",
     "trails": "Trails"
   },
+  "layers": {
+    "label": "Map layers",
+    "companies": "Companies",
+    "activities": "Things to do",
+    "events": "Events",
+    "walking": "Walking paths",
+    "biking": "Biking paths"
+  },
   "card": {
     "close": "Close details",
     "address": "Address",
     "website": "Website",
     "newTab": "(opens in a new tab)",
     "lastVerified": "Last verified {{date}}",
-    "sample": "Sample data"
+    "sample": "Sample data",
+    "details": "Full details",
+    "detailsNamed": "Full details: {{name}}"
   },
   "companies": {
     "kinds": {
@@ -74,6 +84,58 @@
       "past": "Ended"
     }
   },
+  "trails": {
+    "length": "Length",
+    "difficulty": "Difficulty",
+    "surface": "Surface",
+    "types": {
+      "walk": "Walking",
+      "bike": "Biking",
+      "both": "Walking and biking"
+    },
+    "difficulties": {
+      "easy": "Easy",
+      "moderate": "Moderate",
+      "difficult": "Difficult"
+    },
+    "surfaces": {
+      "paved": "Paved",
+      "gravel": "Gravel",
+      "dirt": "Dirt",
+      "boardwalk": "Boardwalk",
+      "mixed": "Mixed"
+    },
+    "networks": {
+      "route-verte": "Route verte"
+    }
+  },
+  "detail": {
+    "back": "Back",
+    "loading": "Loading details…",
+    "loadError": "Couldn't load these details.",
+    "directions": "Directions",
+    "directionsHint": "(opens your maps app)",
+    "share": "Share",
+    "copied": "Link copied to the clipboard.",
+    "shareFailed": "Couldn't share. Link: {{url}}",
+    "documentTitle": "{{name}} — {{appName}}",
+    "notFound": {
+      "title": "Place not found",
+      "message": "This place doesn't exist or was removed."
+    }
+  },
+  "list": {
+    "loading": "Loading the list…",
+    "count_one": "{{count}} item shown",
+    "count_other": "{{count}} items shown",
+    "categoryCount": "{{category}} ({{count}})",
+    "empty": "Nothing here yet.",
+    "noLayers": "No layer selected.",
+    "showAll": "Show all",
+    "loadError": "Couldn't load: {{category}}.",
+    "showOnMapNamed": "Show on map: {{name}}",
+    "selected": "Selected on the map"
+  },
   "pages": {
     "map": {
       "title": "Map"
@@ -82,8 +144,7 @@
       "title": "Events"
     },
     "list": {
-      "title": "List",
-      "placeholder": "The list of places and events is coming soon."
+      "title": "List"
     },
     "about": {
       "title": "About",

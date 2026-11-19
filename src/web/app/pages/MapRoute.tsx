@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useFilterUrlSync } from '@/web/filters/useFilterUrlSync'
 
 // Leaflet and its CSS load only when the map is shown (specs/2026-11-19-base-map D4).
 const MapPage = lazy(() =>
@@ -17,6 +18,7 @@ export function MapLoading() {
 }
 
 export function MapRoute() {
+  useFilterUrlSync()
   return (
     <Suspense fallback={<MapLoading />}>
       <MapPage />

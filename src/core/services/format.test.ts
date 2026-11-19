@@ -1,4 +1,5 @@
 import { formatDate } from '@/core/services/dates'
+import { formatKm } from '@/core/services/units'
 import { sortByName } from '@/core/services/sort'
 
 describe('sortByName', () => {
@@ -47,5 +48,14 @@ describe('formatDate', () => {
   it('never shifts the day, whatever the time zone', () => {
     expect(formatDate('2027-01-01', 'en')).toBe('January 1, 2027')
     expect(formatDate('2026-12-31', 'fr')).toBe('31 décembre 2026')
+  })
+})
+
+describe('formatKm', () => {
+  it('formats kilometres per locale, with one decimal at most', () => {
+    expect(formatKm(15.1, 'fr')).toBe('15,1 km')
+    expect(formatKm(15.1, 'en')).toBe('15.1 km')
+    expect(formatKm(1, 'en')).toBe('1 km')
+    expect(formatKm(4.86, 'en')).toBe('4.9 km')
   })
 })

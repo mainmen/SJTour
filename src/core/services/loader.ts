@@ -38,13 +38,32 @@ export function excludeSamples<T extends BaseRecord>(records: readonly T[]): T[]
 }
 
 /**
- * Validates a parsed data file: an array of the module's records with unique ids.
+ * Validates a parsed data file: an array of the module's records with unique ids
+ * (after the module's `fileSchema`, if any, has unwrapped it).
  * Pure and synchronous, so the build-time data test can use it too.
  */
 export function validateCollection<T extends BaseRecord>(
   module: CoreCategoryModule<T>,
-  data: unknown,
+  file: unknown,
 ): LoadResult<T> {
+  let data = file
+  if (module.fileSchema) {
+    const parsed = module.fileSchema.safeParse(file)
+    if (!parsed.success) {
+      return {
+        status: 'error',
+        error: {
+          kind: 'invalid',
+          issues: parsed.error.issues.map((issue) => ({
+            path: formatPath(issue.path),
+            message: issue.message,
+          })),
+        },
+      }
+    }
+    data = parsed.data
+  }
+
   if (!Array.isArray(data)) {
     return {
       status: 'error',

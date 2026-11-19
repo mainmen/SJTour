@@ -11,7 +11,7 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 - [x] `npm run typecheck`
 - [x] `npm run test`: all tests pass
 - [x] `npm run build`: no errors or warnings
-- [ ] The CI run on the pull request is green
+- [x] The CI run on the pull request is green
 
 ## 2. Types and contract
 

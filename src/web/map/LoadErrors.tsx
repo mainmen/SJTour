@@ -29,8 +29,7 @@ export function LoadErrors({ modules }: { modules: readonly WebCategoryModule[] 
   return (
     <GlassCard
       role="alert"
-      className="absolute inset-x-2 z-[1100] mx-auto flex max-w-md items-center gap-3 rounded-xl border py-1 pr-1 pl-4 text-sm text-ink shadow"
-      style={{ top: 'calc(var(--shell-bar-height) + 1px + env(safe-area-inset-top) + 8px)' }}
+      className="pointer-events-auto flex items-center gap-3 rounded-xl border py-1 pr-1 pl-4 text-sm text-ink shadow"
     >
       <p className="flex-1">
         {t('map.loadError', {

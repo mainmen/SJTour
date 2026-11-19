@@ -1,40 +1,53 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { enabledModuleLayers, visibleRecords } from '@/core/filters/selectors'
 import { selectCollection } from '@/core/store/catalog'
 import { isSelected } from '@/core/store/selection'
 import { pickText } from '@/core/types/bilingual'
 import { PoiMarker } from '@/web/map/PoiMarker'
 import type { WebCategoryModule } from '@/web/modules/types'
-import { catalogStore, selectionStore, useAppStore } from '@/web/state/stores'
+import { catalogStore, filterStore, selectionStore, useAppStore } from '@/web/state/stores'
 import { useLanguage } from '@/web/state/useLanguage'
 
-/** The markers of one category, once its records have loaded. */
+/**
+ * The markers (and overlay, if any) of one category, once its records have
+ * loaded: only records in a layer that is switched on.
+ */
 export function CategoryMarkers({ module }: { module: WebCategoryModule }) {
   const { t } = useTranslation()
   const language = useLanguage()
   const collection = useAppStore(catalogStore, (state) => selectCollection(state, module.core))
   const selected = useAppStore(selectionStore, (state) => state.selected)
+  const enabled = useAppStore(filterStore, (state) => state.enabled)
 
   const records = useMemo(() => {
     if (collection.status !== 'success') return []
-    return module.core.visibleOnMap
-      ? module.core.visibleOnMap(collection.records, new Date())
-      : collection.records
-  }, [collection, module])
+    return visibleRecords(module.core, collection.records, enabled, new Date())
+  }, [collection, module, enabled])
+  const layers = useMemo(() => enabledModuleLayers(module.core, enabled), [module, enabled])
 
   const categoryLabel = t(module.labelKey)
-  return records.map((record) => (
-    <PoiMarker
-      key={record.id}
-      position={record.coordinates}
-      label={t('map.marker', { name: pickText(record.name, language), category: categoryLabel })}
-      recordKey={`${module.id}/${record.id}`}
-      Icon={module.Icon}
-      tone={module.tone}
-      selected={isSelected(selected, { category: module.id, id: record.id })}
-      onSelect={() =>
-        selectionStore.getState().select({ category: module.id, id: record.id, origin: 'map' })
-      }
-    />
-  ))
+  const { Overlay } = module
+  return (
+    <>
+      {Overlay && <Overlay records={records} layers={layers} />}
+      {records.map((record) => (
+        <PoiMarker
+          key={record.id}
+          position={record.coordinates}
+          label={t('map.marker', {
+            name: pickText(record.name, language),
+            category: categoryLabel,
+          })}
+          recordKey={`${module.id}/${record.id}`}
+          Icon={module.Icon}
+          tone={module.tone}
+          selected={isSelected(selected, { category: module.id, id: record.id })}
+          onSelect={() =>
+            selectionStore.getState().select({ category: module.id, id: record.id, origin: 'map' })
+          }
+        />
+      ))}
+    </>
+  )
 }
