@@ -1,12 +1,12 @@
 import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderRoute } from '@/web/app/renderRoute'
-import { strings } from '@/web/app/strings'
+import { i18n } from '@/web/i18n'
 
 const pages = [
-  { path: '/', title: strings.pages.map.title, navLabel: strings.nav.map },
-  { path: '/list', title: strings.pages.list.title, navLabel: strings.nav.list },
-  { path: '/about', title: strings.pages.about.title, navLabel: strings.nav.about },
+  { path: '/', title: i18n.t('pages.map.title'), navLabel: i18n.t('nav.map') },
+  { path: '/list', title: i18n.t('pages.list.title'), navLabel: i18n.t('nav.list') },
+  { path: '/about', title: i18n.t('pages.about.title'), navLabel: i18n.t('nav.about') },
 ]
 
 function pageHeading(name: string) {
@@ -25,8 +25,8 @@ describe('routes', () => {
 
   it('renders the not-found page for an unknown path', () => {
     renderRoute('/does-not-exist')
-    expect(pageHeading(strings.pages.notFound.title)).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: strings.pages.notFound.backHome })).toHaveAttribute(
+    expect(pageHeading(i18n.t('pages.notFound.title'))).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: i18n.t('pages.notFound.backHome') })).toHaveAttribute(
       'href',
       '/',
     )

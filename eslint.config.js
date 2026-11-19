@@ -32,6 +32,11 @@ export default defineConfig([
             { name: 'react-dom', message: 'core must stay platform-agnostic: no React DOM.' },
             { name: 'leaflet', message: 'core must stay platform-agnostic: no Leaflet.' },
             { name: 'react-leaflet', message: 'core must stay platform-agnostic: no Leaflet.' },
+            { name: 'i18next', message: 'core must stay platform-agnostic: i18n lives in web.' },
+            {
+              name: 'react-i18next',
+              message: 'core must stay platform-agnostic: i18n lives in web.',
+            },
           ],
           patterns: [
             {

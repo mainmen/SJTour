@@ -25,9 +25,9 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 2: Internationalization
 
-- [ ] Set up react-i18next with `fr` (default) and `en`
-- [ ] Add a language toggle that persists the choice locally
-- [ ] Move all shell strings into translation files
+- [x] Set up react-i18next with `fr` (default) and `en`
+- [x] Add a language toggle that persists the choice locally
+- [x] Move all shell strings into translation files
 
 ### Phase 3: Base map
 

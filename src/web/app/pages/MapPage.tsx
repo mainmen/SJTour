@@ -1,10 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import { PlaceholderPage } from '@/web/app/pages/PlaceholderPage'
-import { strings } from '@/web/app/strings'
 
 export function MapPage() {
+  const { t } = useTranslation()
   return (
-    <PlaceholderPage title={strings.pages.map.title}>
-      {strings.pages.map.placeholder}
-    </PlaceholderPage>
+    <PlaceholderPage title={t('pages.map.title')}>{t('pages.map.placeholder')}</PlaceholderPage>
   )
 }

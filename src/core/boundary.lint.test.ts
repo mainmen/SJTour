@@ -18,6 +18,8 @@ const forbiddenImports = [
   "import ReactDOM from 'react-dom'",
   "import L from 'leaflet'",
   "import { MapContainer } from 'react-leaflet'",
+  "import i18n from 'i18next'",
+  "import { useTranslation } from 'react-i18next'",
   "import App from '@/web/app/App'",
   "import * as web from '@/web'",
   "import App from '../web/app/App'",

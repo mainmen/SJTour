@@ -1,17 +1,17 @@
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { PlaceholderPage } from '@/web/app/pages/PlaceholderPage'
-import { strings } from '@/web/app/strings'
 
 export function NotFoundPage() {
-  const t = strings.pages.notFound
+  const { t } = useTranslation()
   return (
-    <PlaceholderPage title={t.title}>
-      <p>{t.message}</p>
+    <PlaceholderPage title={t('pages.notFound.title')}>
+      <p>{t('pages.notFound.message')}</p>
       <Link
         to="/"
         className="mt-3 inline-block font-medium text-accent underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
       >
-        {t.backHome}
+        {t('pages.notFound.backHome')}
       </Link>
     </PlaceholderPage>
   )

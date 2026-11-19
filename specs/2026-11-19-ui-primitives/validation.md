@@ -12,7 +12,7 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 - [x] `npm run test`: all tests pass, including the reduced-motion and contrast tests
 - [x] `npm run build`: no errors or warnings
 - [x] `npm run ci` passes locally from a clean install
-- [ ] The CI run on the pull request is green (pending: PR not opened yet)
+- [x] The CI run on the pull request is green (PR #4, merged 2026-11-19)
 
 ## 2. Primitives
 

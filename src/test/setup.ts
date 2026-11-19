@@ -23,6 +23,17 @@ if (typeof window !== 'undefined' && !('AnimationEvent' in window)) {
   })
 }
 
+// i18n needs the DOM (it sets <html lang>), so Node-environment tests skip it.
+// Tests run in French, the default language (specs/2026-11-19-i18n D7).
+if (typeof window !== 'undefined') {
+  const { i18n } = await import('@/web/i18n')
+  await i18n.changeLanguage('fr') // before test modules load (some build tables from t())
+  beforeEach(async () => {
+    await i18n.changeLanguage('fr')
+  })
+}
+
 afterEach(() => {
   vi.unstubAllGlobals()
+  if (typeof window !== 'undefined') localStorage.clear()
 })
