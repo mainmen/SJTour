@@ -1,23 +1,24 @@
-import { render, screen, within } from '@testing-library/react'
-import { AppLayout } from '@/web/app/AppLayout'
+import { screen, within } from '@testing-library/react'
+import { renderRoute } from '@/web/app/renderRoute'
 import { strings } from '@/web/app/strings'
 
 describe('AppLayout', () => {
   it('renders the header with the app name heading', () => {
-    render(<AppLayout />)
+    renderRoute('/')
     const header = screen.getByRole('banner')
     expect(
       within(header).getByRole('heading', { level: 1, name: strings.appName }),
     ).toBeInTheDocument()
   })
 
-  it('renders a main landmark holding the page content', () => {
-    render(<AppLayout>contenu</AppLayout>)
-    expect(screen.getByRole('main')).toHaveTextContent('contenu')
+  it('renders the current page inside the main landmark', () => {
+    renderRoute('/')
+    const main = screen.getByRole('main')
+    expect(within(main).getByRole('heading', { name: strings.pages.map.title })).toBeInTheDocument()
   })
 
   it('renders a labeled navigation landmark with three text-labeled links', () => {
-    render(<AppLayout />)
+    renderRoute('/')
     const nav = screen.getByRole('navigation', { name: strings.nav.label })
     const links = within(nav).getAllByRole('link')
     expect(links.map((l) => l.textContent)).toEqual([
@@ -29,9 +30,8 @@ describe('AppLayout', () => {
   })
 
   it('hides nav icons from assistive technology', () => {
-    render(<AppLayout />)
-    const nav = screen.getByRole('navigation')
-    const icons = nav.querySelectorAll('svg')
+    renderRoute('/')
+    const icons = screen.getByRole('navigation').querySelectorAll('svg')
     expect(icons).toHaveLength(3)
     icons.forEach((icon) => expect(icon).toHaveAttribute('aria-hidden', 'true'))
   })
