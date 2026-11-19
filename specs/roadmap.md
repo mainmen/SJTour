@@ -87,7 +87,7 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 12: Search
 
-- [ ] Add client-side text search across names and descriptions in both languages
+- [x] Add client-side text search across names and descriptions in both languages
 
 ### Phase 13: MVP polish and release
 

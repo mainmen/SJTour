@@ -5,11 +5,13 @@ import { Link } from 'react-router'
 import { enabledModuleLayers, visibleRecords } from '@/core/filters/selectors'
 import type { BaseRecord } from '@/core/schemas/base'
 import { IDLE, type CollectionState } from '@/core/store/catalog'
+import { searchTokens } from '@/core/search/text'
 import { isSelected } from '@/core/store/selection'
 import { sortByName } from '@/core/services/sort'
 import { pickText } from '@/core/types/bilingual'
 import { recordPath } from '@/web/app/paths'
 import { LayerFilter } from '@/web/filters/LayerFilter'
+import { SearchBox } from '@/web/filters/SearchBox'
 import { webModules } from '@/web/modules/registry'
 import type { WebCategoryModule } from '@/web/modules/types'
 import { catalogStore, filterStore, selectionStore, useAppStore } from '@/web/state/stores'
@@ -135,13 +137,15 @@ function CategorySection({ module, collection, records }: CategorySectionProps) 
 /**
  * The accessible equivalent of the map (specs/mission.md → Map-centric,
  * list-friendly): every visible item, grouped by category and sorted by name,
- * using the same layer filters (and URL) as the map. "Show on map" focuses an
+ * using the same layer filters and search (and URL) as the map. "Show on map" focuses an
  * item on the map; coming back highlights the item selected there.
  */
 export function ListPage() {
   const { t } = useTranslation()
   const language = useLanguage()
   const enabled = useAppStore(filterStore, (state) => state.enabled)
+  const query = useAppStore(filterStore, (state) => state.query)
+  const searching = searchTokens(query).length > 0
   const collections = useAppStore(catalogStore, (state) => state.collections)
   const [now] = useState(() => new Date())
 
@@ -157,20 +161,32 @@ export function ListPage() {
           const collection: CollectionState = collections[module.id] ?? IDLE
           const records =
             collection.status === 'success'
-              ? sortByName(visibleRecords(module.core, collection.records, enabled, now), language)
+              ? sortByName(
+                  visibleRecords(module.core, collection.records, enabled, now, query),
+                  language,
+                )
               : []
           return { module, collection, records }
-        }),
-    [collections, enabled, language, now],
+        })
+        // While searching, categories without a match are left out (loading
+        // and failed ones stay, so their state is still shown).
+        .filter(
+          ({ collection, records }) =>
+            !searching || collection.status !== 'success' || records.length > 0,
+        ),
+    [collections, enabled, language, now, query, searching],
   )
+  const anyLayer = webModules.some((module) => enabledModuleLayers(module.core, enabled).length > 0)
   const total = sections.reduce((sum, section) => sum + section.records.length, 0)
+  const noResults = searching && total === 0
   const loaded = sections.every((section) => section.collection.status !== 'loading')
 
   return (
     <section className="mx-auto flex max-w-2xl flex-col gap-4 p-4">
       <h2 className="text-lg font-semibold text-ink">{t('pages.list.title')}</h2>
+      <SearchBox />
       <LayerFilter />
-      {sections.length === 0 ? (
+      {!anyLayer ? (
         <div className="flex flex-col items-start gap-2 text-sm">
           <p className="text-ink-muted">{t('list.noLayers')}</p>
           <RippleButton
@@ -183,8 +199,20 @@ export function ListPage() {
       ) : (
         <>
           <p role="status" className="text-sm text-ink-muted">
-            {loaded ? t('list.count', { count: total }) : t('list.loading')}
+            {!loaded
+              ? t('list.loading')
+              : noResults
+                ? t('search.noResults', { query: query.trim() })
+                : t('list.count', { count: total })}
           </p>
+          {loaded && noResults && (
+            <RippleButton
+              onClick={() => filterStore.getState().clearQuery()}
+              className="min-h-11 self-start rounded-lg border border-accent px-3 font-semibold text-accent"
+            >
+              {t('search.clear')}
+            </RippleButton>
+          )}
           {sections.map((section) => (
             <CategorySection key={section.module.id} {...section} />
           ))}

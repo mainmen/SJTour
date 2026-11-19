@@ -1,5 +1,6 @@
 import type { LayerId } from '@/core/filters/layers'
 import type { BaseRecord } from '@/core/schemas/base'
+import { matchesSearch, searchRecords } from '@/core/search/text'
 import type { CoreCategoryModule } from '@/core/types/module'
 
 /** The module's layers that contain `record` (a `both` trail is in walking and biking). */
@@ -36,16 +37,28 @@ export function filterRecords<T extends BaseRecord>(
   return records.filter((record) => isRecordVisible(module, record, enabled))
 }
 
+/** Whether a record is in an enabled layer and matches the search. */
+export function isRecordShown<T extends BaseRecord>(
+  module: CoreCategoryModule<T>,
+  record: T,
+  enabled: readonly LayerId[],
+  query: string,
+): boolean {
+  return isRecordVisible(module, record, enabled) && matchesSearch(record, query)
+}
+
 /**
  * What a map or list shows of a module at time `now`: the records it draws
- * (`visibleOnMap`, e.g. no past events) that are in an enabled layer.
+ * (`visibleOnMap`, e.g. no past events) that are in an enabled layer and
+ * match the search (blank by default).
  */
 export function visibleRecords<T extends BaseRecord>(
   module: CoreCategoryModule<T>,
   records: readonly T[],
   enabled: readonly LayerId[],
   now: Date,
+  query = '',
 ): T[] {
   const drawn = module.visibleOnMap ? module.visibleOnMap(records, now) : records
-  return filterRecords(module, drawn, enabled)
+  return searchRecords(filterRecords(module, drawn, enabled), query)
 }

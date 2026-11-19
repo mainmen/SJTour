@@ -5,7 +5,7 @@ The Phase 9 commit (and the combined Phase 8–11 PR) on `feature/trails-filters
 ## 1. Automated checks
 
 - [x] `npm run ci` passes locally
-- [ ] The CI run on the pull request is green
+- [x] The CI run on the pull request is green
 
 ## 2. Core
 

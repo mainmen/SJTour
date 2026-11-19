@@ -34,6 +34,16 @@
     "walking": "Sentiers pédestres",
     "biking": "Pistes cyclables"
   },
+  "search": {
+    "label": "Recherche",
+    "input": "Rechercher un lieu, une activité ou un événement",
+    "placeholder": "Rechercher…",
+    "clear": "Effacer la recherche",
+    "results_one": "{{count}} résultat",
+    "results_other": "{{count}} résultats",
+    "noResults": "Aucun résultat pour « {{query}} ».",
+    "seeList": "Voir dans la liste"
+  },
   "card": {
     "close": "Fermer la fiche",
     "address": "Adresse",

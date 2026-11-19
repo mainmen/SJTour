@@ -5,7 +5,7 @@ The Phase 8 commit (and the combined Phase 8–11 PR) on `feature/trails-filters
 ## 1. Automated checks
 
 - [x] `npm run ci` passes locally
-- [ ] The CI run on the pull request is green
+- [x] The CI run on the pull request is green
 
 ## 2. Core
 
@@ -29,6 +29,6 @@ The Phase 8 commit (and the combined Phase 8–11 PR) on `feature/trails-filters
 
 ## 5. Bundle and hygiene
 
-- [ ] Gzipped sizes recorded in the PR description; `/` under ~200 kB
+- [x] Gzipped sizes recorded in the PR description; `/` under ~200 kB
 - [x] No hard-coded user-facing strings
 - [x] The phase is a single commit; Phase 8 is checked off in `specs/roadmap.md`
