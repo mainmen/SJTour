@@ -1,0 +1,55 @@
+import { screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { renderRoute } from '@/web/app/renderRoute'
+import { strings } from '@/web/app/strings'
+
+const pages = [
+  { path: '/', title: strings.pages.map.title, navLabel: strings.nav.map },
+  { path: '/list', title: strings.pages.list.title, navLabel: strings.nav.list },
+  { path: '/about', title: strings.pages.about.title, navLabel: strings.nav.about },
+]
+
+function pageHeading(name: string) {
+  return within(screen.getByRole('main')).getByRole('heading', { level: 2, name })
+}
+
+function navLink(name: string) {
+  return within(screen.getByRole('navigation')).getByRole('link', { name })
+}
+
+describe('routes', () => {
+  it.each(pages)('renders the $path placeholder page', ({ path, title }) => {
+    renderRoute(path)
+    expect(pageHeading(title)).toBeInTheDocument()
+  })
+
+  it('renders the not-found page for an unknown path', () => {
+    renderRoute('/does-not-exist')
+    expect(pageHeading(strings.pages.notFound.title)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: strings.pages.notFound.backHome })).toHaveAttribute(
+      'href',
+      '/',
+    )
+  })
+
+  it.each(pages)(
+    'navigates to $path when its nav link is clicked',
+    async ({ path, title, navLabel }) => {
+      const user = userEvent.setup()
+      // Start somewhere else so every click is a real navigation.
+      const { router } = renderRoute(path === '/about' ? '/list' : '/about')
+      await user.click(navLink(navLabel))
+      expect(router.state.location.pathname).toBe(path)
+      expect(pageHeading(title)).toBeInTheDocument()
+    },
+  )
+
+  it.each(pages)('marks only the $path nav link as the current page', ({ path, navLabel }) => {
+    renderRoute(path)
+    for (const { navLabel: other } of pages) {
+      const link = navLink(other)
+      if (other === navLabel) expect(link).toHaveAttribute('aria-current', 'page')
+      else expect(link).not.toHaveAttribute('aria-current')
+    }
+  })
+})

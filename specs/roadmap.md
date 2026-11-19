@@ -13,10 +13,10 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 1: App shell
 
-- [ ] Create the `src/core/` and `src/web/` layer folders
-- [ ] Add an ESLint rule that stops `core` from importing `web`, React DOM, Leaflet or browser globals
-- [ ] Mobile-first layout: header, full-screen content area, bottom nav (with Lucide icons)
-- [ ] Set up React Router with placeholder routes (`/`, `/list`, `/about`)
+- [x] Create the `src/core/` and `src/web/` layer folders
+- [x] Add an ESLint rule that stops `core` from importing `web`, React DOM, Leaflet or browser globals
+- [x] Mobile-first layout: header, full-screen content area, bottom nav (with Lucide icons)
+- [x] Set up React Router with placeholder routes (`/`, `/list`, `/about`)
 
 ### Phase 1b: UI primitives
 
