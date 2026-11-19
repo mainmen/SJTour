@@ -12,7 +12,7 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 - [x] `npm run test`: all tests pass
 - [x] `npm run build`: no errors or warnings
 - [x] `npm run ci` passes locally from a clean install
-- [ ] The CI run on the pull request is green (pending: PR not opened yet)
+- [x] The CI run on the pull request is green (PR #5, merged as ecd24fe)
 
 ## 2. Map configuration
 
@@ -50,7 +50,7 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 
 ## 7. Bundle size and lazy loading
 
-- [ ] The main chunk size before and after and the map chunk size (gzipped) are recorded in the PR description (main 96.86 → 97.95 kB; map chunk 45.00 kB JS + 6.55 kB CSS; goes in the PR description)
+- [x] The main chunk size before and after and the map chunk size (gzipped) are recorded in the PR description (main 96.86 → 97.95 kB; map chunk 45.00 kB JS + 6.55 kB CSS, in PR #5)
 - [x] Manual or build check: visiting `/about` directly downloads no Leaflet chunk (headless Edge resource list on `/about`: only `index-*.js`/`.css`; Leaflet appears only in `MapPage-*.js`)
 - [x] The total is well under the ~200 KB gzipped budget
 
@@ -61,4 +61,4 @@ Run `rm -rf node_modules dist && npm ci`. Then each of these must exit with code
 - [x] No hard-coded user-facing strings (the OSM attribution is the documented exception, D5)
 - [x] The phase is a single commit on top of the Phase 2 commit, with a conventional commit message
 - [x] Phase 3 is checked off in `specs/roadmap.md`
-- [ ] One PR covers both phases, and its description lists both phases' bundle numbers (pending: PR not opened yet)
+- [x] One PR covers both phases, and its description lists both phases' bundle numbers (PR #5)

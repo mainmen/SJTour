@@ -37,10 +37,10 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 4: Core contracts and data layer (types and tests first)
 
-- [ ] Define the shared types and the `CategoryModule` contract (core and web sides) in `src/core/types/`
-- [ ] Define the base Zod schema (bilingual fields, coordinates, `lastVerified`, optional `sample`)
-- [ ] Write a generic JSON loader service with validation and error states, with unit tests
-- [ ] Create the Zustand store skeleton (selection, language), with unit tests
+- [x] Define the shared types and the `CategoryModule` contract (core and web sides) in `src/core/types/`
+- [x] Define the base Zod schema (bilingual fields, coordinates, `lastVerified`, optional `sample`)
+- [x] Write a generic JSON loader service with validation and error states, with unit tests
+- [x] Create the Zustand store skeleton (selection, language), with unit tests
 
 ### Phase 5: Companies module
 

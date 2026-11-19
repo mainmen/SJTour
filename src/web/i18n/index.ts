@@ -8,6 +8,7 @@ import {
   type Language,
 } from '@/core/i18n/language'
 import { loadLanguage, saveLanguage } from '@/web/adapters/languageStorage'
+import { languageStore } from '@/web/state/stores'
 import en from '@/web/i18n/en.json'
 import fr from '@/web/i18n/fr.json'
 
@@ -21,10 +22,13 @@ export async function chooseLanguage(language: Language): Promise<void> {
   await i18n.changeLanguage(language)
 }
 
-// Keep <html lang> in sync for screen-reader pronunciation (WCAG 3.1.1).
+// Keep <html lang> in sync for screen-reader pronunciation (WCAG 3.1.1), and the
+// core language store in sync for core logic (sorting, search).
 // Registered before init so it also runs for the initial language.
 i18n.on('languageChanged', (lng) => {
-  if (isLanguage(lng)) document.documentElement.lang = lng
+  if (!isLanguage(lng)) return
+  document.documentElement.lang = lng
+  languageStore.getState().setLanguage(lng)
 })
 
 // Resources are bundled, so init is synchronous: no loading state, no flash of keys.
