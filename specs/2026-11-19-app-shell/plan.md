@@ -40,7 +40,7 @@ Each task group ends with every check passing (`npm run ci`), followed by one co
 
 4.1 Install `react-router` (v7).
 4.2 Create placeholder pages in `src/web/app/pages/`: `MapPage`, `ListPage`, `AboutPage` and `NotFoundPage`, each with a heading from `strings.ts`.
-4.3 Create `src/web/app/routes.tsx` exporting the route objects: `AppLayout` as the root element with an `<Outlet />` in `<main>`, children `/` (index), `/list` and `/about`, and `*` for not-found.
+4.3 Create `src/web/app/routes.ts` exporting the route objects: `AppLayout` as the root element with an `<Outlet />` in `<main>`, children `/` (index), `/list` and `/about`, and `*` for not-found.
 4.4 Switch `BottomNav` to `NavLink` with `end` on `/`; style the active item with a color change **and** a non-color indicator (D8).
 4.5 Replace `App.tsx` with a `RouterProvider` using `createBrowserRouter(routes)`. Remove the old smoke test or fold it into the layout tests.
 4.6 Write tests with `createMemoryRouter(routes, { initialEntries })`:

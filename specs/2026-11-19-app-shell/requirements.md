@@ -73,4 +73,4 @@ No other runtime dependencies are added.
 ## Notes
 
 - Phase 0's App smoke test is replaced by layout tests that cover the same heading.
-- Tests that render routes use `createMemoryRouter` with the same route config as the app, so the route table is defined once (e.g. exported from `src/web/app/routes.tsx`).
+- Tests that render routes use `createMemoryRouter` with the same route config as the app, so the route table is defined once (e.g. exported from `src/web/app/routes.ts`).
