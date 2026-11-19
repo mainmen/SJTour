@@ -11,8 +11,14 @@ High-level implementation order, in very small phases. Each phase should be ship
 - [ ] Add a basic CI workflow (lint, typecheck, test, build)
 
 ### Phase 1: App shell
-- [ ] Mobile-first layout: header, full-screen content area, bottom nav
+- [ ] Create the `src/core/` and `src/web/` layer folders
+- [ ] Add an ESLint rule that stops `core` from importing `web`, React DOM, Leaflet or browser globals
+- [ ] Mobile-first layout: header, full-screen content area, bottom nav (with Lucide icons)
 - [ ] Set up React Router with placeholder routes (`/`, `/list`, `/about`)
+
+### Phase 1b: UI primitives
+- [ ] Build `GlassCard` and `RippleButton`, with reduced-motion support and AA contrast
+- [ ] Add a test that checks the reduced-motion behavior
 
 ### Phase 2: Internationalization
 - [ ] Set up react-i18next with `fr` (default) and `en`
@@ -20,37 +26,42 @@ High-level implementation order, in very small phases. Each phase should be ship
 - [ ] Move all shell strings into translation files
 
 ### Phase 3: Base map
-- [ ] Full-screen Leaflet map centered on Saint-Jean-sur-Richelieu
+- [ ] Full-screen Leaflet map centered on `[45.3073, -73.2625]`
 - [ ] OSM tiles with attribution
 - [ ] Zoom controls and a sensible min/max zoom
 
-### Phase 4: Module contract and data layer
-- [ ] Define the shared `CategoryModule` interface
-- [ ] Define the base Zod schema (bilingual fields, coordinates, `lastVerified`)
-- [ ] Write a generic JSON loader with validation and error states
+### Phase 4: Core contracts and data layer (types and tests first)
+- [ ] Define the shared types and the `CategoryModule` contract (core and web sides) in `src/core/types/`
+- [ ] Define the base Zod schema (bilingual fields, coordinates, `lastVerified`, optional `sample`)
+- [ ] Write a generic JSON loader service with validation and error states, with unit tests
+- [ ] Create the Zustand store skeleton (selection, language), with unit tests
 
 ### Phase 5: Companies module
-- [ ] Seed `companies.json` (about 10 real entries)
-- [ ] Show markers on the map
-- [ ] Show a bottom-sheet card when a marker is tapped
+- [ ] Core: schema (with `sector` and `kind`), service and unit tests
+- [ ] Seed `companies.json` with sample entries flagged `sample: true`, including an industrial park
+- [ ] Web: show markers on the map
+- [ ] Web: show a bottom-sheet card on a glass panel when a marker is tapped
 
 ### Phase 6: Activities module
-- [ ] Seed `activities.json`
-- [ ] Add markers and cards, reusing the module contract
+- [ ] Core: schema with `subcategory` (parks, culture, dining, outdoor), service and tests
+- [ ] Seed `activities.json` with sample entries
+- [ ] Web: add markers and cards, reusing the module contract
 
 ### Phase 7: Events module
+- [ ] Core: Upcoming/Recent selectors (Recent = ended within the last 30 days), with unit tests
 - [ ] Seed `events.json` with start and end dates (America/Montreal)
-- [ ] Add markers and cards, hiding past events by default
+- [ ] Web: add markers and cards, plus an events list with Upcoming and Recent tabs and a "Show on map" action
 - [ ] Add date display formatted per locale
 
 ### Phase 8: Trails module
-- [ ] Seed `trails.geojson` with 2 or 3 trails
-- [ ] Render polylines styled by type (walk / bike / both)
+- [ ] Seed `trails.geojson` with 2 or 3 trails, including La Route verte and the Chambly Canal path
+- [ ] Render separate walking and biking layers (`both` trails appear in each)
 - [ ] Show a trail card with length, difficulty and surface
 
 ### Phase 9: Category filtering
-- [ ] Add category toggle chips that show or hide each layer
-- [ ] Keep the filter state in URL query params so views can be shared
+- [ ] Core: add a Zustand filter store and filter selectors, with unit tests
+- [ ] Web: add layer toggle chips (`FilterChips`) for Companies, Things to do, Events, Walking paths and Biking paths
+- [ ] Mirror the filter state to URL query params so views can be shared
 
 ### Phase 10: Detail view
 - [ ] Add a `/:category/:id` detail route with full info
@@ -65,6 +76,7 @@ High-level implementation order, in very small phases. Each phase should be ship
 - [ ] Add client-side text search across names and descriptions in both languages
 
 ### Phase 13: MVP polish and release
+- [ ] Replace all sample data with real, verified entries (about 10 per category). The CI check confirms no `sample: true` records ship.
 - [ ] Add marker clustering
 - [ ] Add loading, empty and error states
 - [ ] Run an accessibility pass (keyboard, screen reader, contrast)
@@ -90,13 +102,28 @@ High-level implementation order, in very small phases. Each phase should be ship
 ### Phase 18: Trail details
 - [ ] Add an elevation profile, a GPX download and points of interest along each trail
 
+### Phase 19: Business network
+- [ ] Core: `company-links.json` schema (source required), a network graph service (links by company, by sector and by cluster) and unit tests
+- [ ] Seed only publicly documented links, each with a source
+- [ ] Web: add a `ConnectionLines` layer (arcs between companies) with a sector filter and a link detail showing its source
+
+### Phase 20: Walk/bike route preview
+- [ ] Core: `RoutingService` interface, a mock implementation using precomputed GeoJSON, distance and time formatting, and unit tests
+- [ ] Web: select two pins, choose walk or bike, then show a `RouteOverlay` with distance and estimated time
+- [ ] Add an OSRM implementation that points to a self-hosted or licensed instance (never the public demo in production), with the endpoint set in config
+- [ ] Allow "my location" as a start point only after explicit consent
+- [ ] Hand live guidance off to the device's maps app
+
 ## Milestone 3: Content at scale (future)
 
-### Phase 19: Content backend
+### Phase 21: Content backend
 - [ ] Move data to a headless CMS or Supabase/PostGIS behind the existing loader interface
 
-### Phase 20: Content workflow
+### Phase 22: Content workflow
 - [ ] Add an editor workflow for businesses and the city to submit and update listings
 
-### Phase 21: Privacy-friendly analytics
+### Phase 23: Privacy-friendly analytics
 - [ ] Add cookieless usage metrics to guide future content decisions
+
+### Phase 24: Native app spike (optional)
+- [ ] Prototype reusing `src/core/` in a Capacitor or React Native (Expo) shell to confirm the core is truly portable
