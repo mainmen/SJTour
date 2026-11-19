@@ -34,6 +34,16 @@
     "walking": "Walking paths",
     "biking": "Biking paths"
   },
+  "search": {
+    "label": "Search",
+    "input": "Search places, things to do and events",
+    "placeholder": "Search…",
+    "clear": "Clear search",
+    "results_one": "{{count}} result",
+    "results_other": "{{count}} results",
+    "noResults": "No results for “{{query}}”.",
+    "seeList": "See in the list"
+  },
   "card": {
     "close": "Close details",
     "address": "Address",

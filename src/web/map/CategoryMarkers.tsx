@@ -11,7 +11,7 @@ import { useLanguage } from '@/web/state/useLanguage'
 
 /**
  * The markers (and overlay, if any) of one category, once its records have
- * loaded: only records in a layer that is switched on.
+ * loaded: only records in a layer that is switched on and matching the search.
  */
 export function CategoryMarkers({ module }: { module: WebCategoryModule }) {
   const { t } = useTranslation()
@@ -19,11 +19,12 @@ export function CategoryMarkers({ module }: { module: WebCategoryModule }) {
   const collection = useAppStore(catalogStore, (state) => selectCollection(state, module.core))
   const selected = useAppStore(selectionStore, (state) => state.selected)
   const enabled = useAppStore(filterStore, (state) => state.enabled)
+  const query = useAppStore(filterStore, (state) => state.query)
 
   const records = useMemo(() => {
     if (collection.status !== 'success') return []
-    return visibleRecords(module.core, collection.records, enabled, new Date())
-  }, [collection, module, enabled])
+    return visibleRecords(module.core, collection.records, enabled, new Date(), query)
+  }, [collection, module, enabled, query])
   const layers = useMemo(() => enabledModuleLayers(module.core, enabled), [module, enabled])
 
   const categoryLabel = t(module.labelKey)

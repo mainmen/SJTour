@@ -5,7 +5,7 @@ The Phase 10 commit (and the combined Phase 8–11 PR) on `feature/trails-filter
 ## 1. Automated checks
 
 - [x] `npm run ci` passes locally
-- [ ] The CI run on the pull request is green
+- [x] The CI run on the pull request is green
 
 ## 2. Core
 
@@ -32,6 +32,6 @@ The Phase 10 commit (and the combined Phase 8–11 PR) on `feature/trails-filter
 
 ## 5. Bundle and hygiene
 
-- [ ] The detail chunk is lazy; sizes recorded in the PR description
+- [x] The detail chunk is lazy; sizes recorded in the PR description
 - [x] No hard-coded user-facing strings
 - [x] The phase is a single commit; Phase 10 is checked off in `specs/roadmap.md`

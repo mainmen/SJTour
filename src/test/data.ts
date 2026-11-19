@@ -26,4 +26,5 @@ export function resetAppStores() {
   catalogStore.setState({ collections: {} })
   selectionStore.setState({ selected: null })
   filterStore.getState().showAll()
+  filterStore.getState().clearQuery()
 }

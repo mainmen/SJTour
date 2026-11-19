@@ -24,3 +24,19 @@ export function serializeLayers(enabled: readonly LayerId[]): string | null {
   if (ids.length === LAYER_IDS.length) return null
   return ids.join(',')
 }
+
+/** Query parameter mirroring the search text: `?q=kayak`. */
+export const SEARCH_PARAM = 'q'
+
+/** Longest search kept (from the URL or the search box). */
+export const MAX_QUERY_LENGTH = 100
+
+/** Reads the `q` parameter: `null` when absent (no opinion), else the text, capped. */
+export function parseSearchParam(value: string | null): string | null {
+  return value === null ? null : value.slice(0, MAX_QUERY_LENGTH)
+}
+
+/** The `q` value for a search, or `null` (no parameter) when it is blank. */
+export function serializeSearch(query: string): string | null {
+  return query.trim() === '' ? null : query.slice(0, MAX_QUERY_LENGTH)
+}

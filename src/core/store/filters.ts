@@ -10,16 +10,20 @@ export type FilterState = {
   setEnabled(ids: Iterable<LayerId>): void
   /** Switches layers on, keeping the others as they are. */
   enable(ids: Iterable<LayerId>): void
-  /** Switches every layer on. */
+  /** Switches every layer on (the search is kept). */
   showAll(): void
+  /** Search text as typed (specs/2026-11-19-search); `''` when not searching. */
+  readonly query: string
+  setQuery(query: string): void
+  clearQuery(): void
 }
 
 function sameLayers(a: readonly LayerId[], b: readonly LayerId[]) {
   return a.length === b.length && a.every((id, index) => id === b[index])
 }
 
-/** Which map layers are shown, shared by the map and the list. */
-export function createFilterStore(initial: Iterable<LayerId> = LAYER_IDS) {
+/** Which map layers are shown and what is searched, shared by the map and the list. */
+export function createFilterStore(initial: Iterable<LayerId> = LAYER_IDS, initialQuery = '') {
   return createStore<FilterState>()((set, get) => {
     // Keeps the same array when nothing changes, so subscribers don't re-render.
     const update = (ids: Iterable<LayerId>) => {
@@ -35,6 +39,11 @@ export function createFilterStore(initial: Iterable<LayerId> = LAYER_IDS) {
       setEnabled: update,
       enable: (ids) => update([...get().enabled, ...ids]),
       showAll: () => update(LAYER_IDS),
+      query: initialQuery,
+      setQuery(query) {
+        if (query !== get().query) set({ query })
+      },
+      clearQuery: () => get().setQuery(''),
     }
   })
 }
