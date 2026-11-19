@@ -1,6 +1,6 @@
 # Phase 1: App Shell — Requirements
 
-- **Branch:** `feature/app-shell` (branched from `feature/project-foundation`, which has not merged to `main` yet)
+- **Branch:** `feature/app-shell` (based on `main` after Phase 0 merged in PR #2)
 - **Roadmap reference:** `specs/roadmap.md` → Milestone 1, Phase 1
 - **Guidance:** `specs/mission.md` and `specs/tech-stack.md`
 
