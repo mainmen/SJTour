@@ -20,8 +20,8 @@ High-level implementation order, in very small phases. Each phase should be ship
 
 ### Phase 1b: UI primitives
 
-- [ ] Build `GlassCard` and `RippleButton`, with reduced-motion support and AA contrast
-- [ ] Add a test that checks the reduced-motion behavior
+- [x] Build `GlassCard` and `RippleButton`, with reduced-motion support and AA contrast
+- [x] Add a test that checks the reduced-motion behavior
 
 ### Phase 2: Internationalization
 

@@ -1,10 +1,62 @@
 @import 'tailwindcss';
 
-/* Brand tokens are defined in later phases (see specs/tech-stack.md → Visual style). */
+/*
+ * Design tokens (specs/tech-stack.md → Visual style).
+ * Colour values are 6- or 8-digit hex so `src/web/ui/contrast.test.ts` can read
+ * them and check WCAG AA contrast. Keep that format when changing them.
+ */
 @theme {
   --font-sans:
     system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
+
+  /* Text */
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  /* Brand accent (titles, active nav item) */
+  --color-accent: #075985;
+  /* Keyboard focus ring */
+  --color-focus: #0369a1;
+  /* Opaque surface: the default, and the fallback for glass */
+  --color-surface: #ffffff;
+  /* Translucent glass surface (white at ~85% opacity) */
+  --color-glass: #ffffffd9;
+  /* Hairline border on glass panels (decorative) */
+  --color-glass-border: #e2e8f0;
+
+  --animate-ripple: ripple 550ms ease-out forwards;
+
+  @keyframes ripple {
+    from {
+      transform: scale(0);
+      opacity: 0.35;
+    }
+    to {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+}
+
+/*
+ * Glass panel: translucent + blurred where supported, solid otherwise.
+ * The solid surface is the default; users who ask for reduced transparency
+ * get it back (an override, so browsers without that media feature keep glass).
+ */
+@utility glass {
+  background-color: var(--color-surface);
+
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    background-color: var(--color-glass);
+    -webkit-backdrop-filter: blur(12px) saturate(1.5);
+    backdrop-filter: blur(12px) saturate(1.5);
+
+    @media (prefers-reduced-transparency: reduce) {
+      background-color: var(--color-surface);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
 }
 
 @layer base {
@@ -20,6 +72,6 @@
   }
 
   body {
-    @apply bg-white font-sans text-slate-900 antialiased;
+    @apply bg-surface font-sans text-ink antialiased;
   }
 }
