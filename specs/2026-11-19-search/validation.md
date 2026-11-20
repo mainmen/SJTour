@@ -5,7 +5,7 @@ The Phase 12 commit and PR on `feature/search` can merge only when every box bel
 ## 1. Automated checks
 
 - [x] `npm run ci` passes locally
-- [ ] The CI run on the pull request is green
+- [x] The CI run on the pull request is green
 
 ## 2. Core
 
@@ -39,6 +39,6 @@ The Phase 12 commit and PR on `feature/search` can merge only when every box bel
 
 ## 6. Hygiene
 
-- [ ] Sizes recorded in the PR description (no new dependency)
+- [x] Sizes recorded in the PR description (no new dependency)
 - [x] No hard-coded user-facing strings
 - [x] The phase is a single commit; Phase 12 is checked off in `specs/roadmap.md`

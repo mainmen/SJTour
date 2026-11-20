@@ -1,7 +1,8 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
-import { isRecordShown, visibleRecords } from '@/core/filters/selectors'
+import { LAYER_IDS } from '@/core/filters/layers'
+import { enabledModuleLayers, isRecordShown, visibleRecords } from '@/core/filters/selectors'
 import { searchTokens } from '@/core/search/text'
 import { LayerFilter } from '@/web/filters/LayerFilter'
 import { SearchBox } from '@/web/filters/SearchBox'
@@ -13,6 +14,7 @@ import { RevealSelection } from '@/web/map/RevealSelection'
 import { useSelectedRecord } from '@/web/map/useSelectedRecord'
 import { webModules } from '@/web/modules/registry'
 import { catalogStore, filterStore, selectionStore, useAppStore } from '@/web/state/stores'
+import { RippleButton } from '@/web/ui/RippleButton'
 
 /** Closes the card when the user hides the selected record (layers or search). */
 function useClearHiddenSelection() {
@@ -26,52 +28,92 @@ function useClearHiddenSelection() {
   }, [selected, enabled, query])
 }
 
+type MapStatusMode = 'idle' | 'loading' | 'noLayers' | 'search' | 'empty'
+
 /**
- * While searching, how many places the map shows, with a link to the list.
- * The live region stays mounted (empty when not searching) so screen readers
- * announce each new count.
+ * One line under the chips telling what the map shows (specs/2026-11-19-mvp-release D4):
+ * places still loading; no layer on (with Show all); while searching, the
+ * number of results with a link to the list; or nothing to show with the
+ * current filters. The live region stays mounted (empty when there is nothing
+ * to say) so screen readers announce each change.
  */
-function SearchResults() {
+function MapStatus() {
   const { t } = useTranslation()
   const enabled = useAppStore(filterStore, (state) => state.enabled)
   const query = useAppStore(filterStore, (state) => state.query)
   const collections = useAppStore(catalogStore, (state) => state.collections)
   const searching = searchTokens(query).length > 0
 
-  const count = useMemo(() => {
-    if (!searching) return 0
+  const { mode, count } = useMemo((): { mode: MapStatusMode; count: number } => {
+    const shown = webModules.filter(
+      (module) => enabledModuleLayers(module.core, enabled).length > 0,
+    )
+    if (shown.length === 0) return { mode: 'noLayers', count: 0 }
+    const states = shown.map((module) => collections[module.id]?.status ?? 'idle')
+    if (states.some((status) => status === 'idle' || status === 'loading')) {
+      return { mode: 'loading', count: 0 }
+    }
     const now = new Date()
-    return webModules.reduce((sum, module) => {
+    const count = shown.reduce((sum, module) => {
       const collection = collections[module.id]
       if (collection?.status !== 'success') return sum
       return sum + visibleRecords(module.core, collection.records, enabled, now, query).length
     }, 0)
-  }, [searching, collections, enabled, query])
+    if (searching) return { mode: 'search', count }
+    // A failed category has its own alert (LoadErrors); don't also call the map empty.
+    if (count === 0 && !states.includes('error')) return { mode: 'empty', count }
+    return { mode: 'idle', count }
+  }, [collections, enabled, query, searching])
+
+  const action =
+    'flex min-h-11 shrink-0 items-center rounded-full px-2 font-semibold text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus'
+  const showAll = (
+    <RippleButton className={action} onClick={() => filterStore.getState().showAll()}>
+      {t('list.showAll')}
+    </RippleButton>
+  )
+
+  let content: ReactNode = null
+  if (mode === 'loading') content = <span className="py-2.5">{t('map.loadingPlaces')}</span>
+  else if (mode === 'noLayers') {
+    content = (
+      <>
+        <span>{t('list.noLayers')}</span>
+        {showAll}
+      </>
+    )
+  } else if (mode === 'search') {
+    content = (
+      <>
+        <span>
+          {count === 0
+            ? t('search.noResults', { query: query.trim() })
+            : t('search.results', { count })}
+        </span>
+        <Link to="/list" className={action}>
+          {t('search.seeList')}
+        </Link>
+      </>
+    )
+  } else if (mode === 'empty') {
+    content = (
+      <>
+        <span>{t('map.empty')}</span>
+        {enabled.length < LAYER_IDS.length && showAll}
+      </>
+    )
+  }
 
   return (
     <div
       role="status"
       className={
-        searching
-          ? 'glass pointer-events-auto flex items-center justify-between gap-3 self-start rounded-full border border-glass-border pl-3 pr-1 text-sm text-ink shadow-sm'
+        content
+          ? 'glass pointer-events-auto flex items-center justify-between gap-3 self-start rounded-full border border-glass-border pr-1 pl-3 text-sm text-ink shadow-sm'
           : 'sr-only'
       }
     >
-      {searching && (
-        <>
-          <span>
-            {count === 0
-              ? t('search.noResults', { query: query.trim() })
-              : t('search.results', { count })}
-          </span>
-          <Link
-            to="/list"
-            className="flex min-h-11 items-center rounded-full px-2 font-semibold text-accent underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          >
-            {t('search.seeList')}
-          </Link>
-        </>
-      )}
+      {content}
     </div>
   )
 }
@@ -105,7 +147,7 @@ export function MapPage() {
       >
         <SearchBox className="pointer-events-auto" />
         <LayerFilter className="pointer-events-auto" />
-        <SearchResults />
+        <MapStatus />
         <LoadErrors modules={webModules} />
       </div>
       <BottomSheet />

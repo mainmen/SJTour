@@ -6,6 +6,17 @@ import { MapPage } from '@/web/app/pages/MapPage'
 import { i18n } from '@/web/i18n'
 import { filterStore, selectionStore } from '@/web/state/stores'
 
+// These tests look at markers one by one: a zero radius keeps every marker
+// apart. Clustering has its own tests (cluster.test.ts, clusters.test.tsx).
+vi.mock('@/core/map/cluster', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/core/map/cluster')>()
+  return {
+    ...actual,
+    clusterPoints: ((points, zoom) =>
+      actual.clusterPoints(points, zoom, 0)) satisfies typeof actual.clusterPoints,
+  }
+})
+
 // jsdom has no layout: give elements a phone-sized box so Leaflet sets a view.
 beforeEach(() => {
   vi.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(360)

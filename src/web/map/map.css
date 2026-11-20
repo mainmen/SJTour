@@ -84,8 +84,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 25px;
+  height: 25px;
   margin-bottom: 2px;
   color: #ffffff;
   background-color: var(--poi-color);
@@ -113,6 +113,39 @@
       width 150ms ease-out,
       height 150ms ease-out;
   }
+}
+
+/*
+ * Clusters (ClusterMarker.tsx): a round badge (not a pin) with the category
+ * icon and the count, so it reads differently from a single place.
+ */
+.map-canvas .poi-cluster {
+  align-items: center;
+}
+.map-canvas .poi-cluster__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  /* The count fits inside the 20 px badge: 16 px inside the border, 11 px text. */
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  background-color: var(--poi-color);
+  border: 2px solid #ffffff;
+  border-radius: 9999px;
+  box-shadow:
+    0 0 0 3px var(--poi-color),
+    0 1px 6px rgb(15 23 42 / 0.5);
+}
+.map-canvas .poi-cluster__icon {
+  flex: none;
+  width: 10px;
+  height: 10px;
 }
 
 .map-canvas .poi-marker:focus-visible {

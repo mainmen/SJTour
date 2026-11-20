@@ -5,6 +5,7 @@
     "switchTo": "Switch to English"
   },
   "nav": {
+    "skip": "Skip to content",
     "label": "Main navigation",
     "map": "Map",
     "events": "Events",
@@ -18,7 +19,11 @@
     "loading": "Loading the map…",
     "marker": "{{name}}, {{category}}",
     "loadError": "Couldn't load: {{categories}}.",
-    "retry": "Retry"
+    "retry": "Retry",
+    "loadingPlaces": "Loading places…",
+    "empty": "Nothing to show with these filters.",
+    "cluster_one": "{{count}} place, {{category}}. Zoom in to show it",
+    "cluster_other": "{{count}} places, {{category}}. Zoom in to show them"
   },
   "categories": {
     "companies": "Companies",
@@ -158,7 +163,14 @@
     },
     "about": {
       "title": "About",
-      "placeholder": "StJeanTour helps you discover Saint-Jean-sur-Richelieu."
+      "intro": "StJeanTour helps you discover Saint-Jean-sur-Richelieu: companies, things to do, events, walking paths and biking paths, on a map or as a list.",
+      "dataTitle": "The data",
+      "data": "Each entry shows when it was last verified. Hours and dates can change: check with the organizer before you go.",
+      "mapTitle": "The map",
+      "mapCredit": "Map data © OpenStreetMap contributors.",
+      "mapLink": "OpenStreetMap copyright and license",
+      "privacyTitle": "Privacy",
+      "privacy": "No account and no tracking cookies. Your language choice is kept on your device only."
     },
     "notFound": {
       "title": "Page not found",

@@ -13,13 +13,33 @@ export const routes: RouteObject[] = [
     path: '/',
     Component: AppLayout,
     children: [
-      { index: true, Component: MapRoute, handle: { fullBleed: true } satisfies LayoutHandle },
-      { path: 'events', Component: EventsRoute },
-      { path: 'list', Component: ListRoute },
-      { path: 'about', Component: AboutPage },
+      {
+        index: true,
+        Component: MapRoute,
+        handle: { fullBleed: true, titleKey: null } satisfies LayoutHandle,
+      },
+      {
+        path: 'events',
+        Component: EventsRoute,
+        handle: { titleKey: 'pages.events.title' } satisfies LayoutHandle,
+      },
+      {
+        path: 'list',
+        Component: ListRoute,
+        handle: { titleKey: 'pages.list.title' } satisfies LayoutHandle,
+      },
+      {
+        path: 'about',
+        Component: AboutPage,
+        handle: { titleKey: 'pages.about.title' } satisfies LayoutHandle,
+      },
       // A record's detail page; static paths above win over it.
       { path: ':category/:id', Component: DetailRoute },
-      { path: '*', Component: NotFoundPage },
+      {
+        path: '*',
+        Component: NotFoundPage,
+        handle: { titleKey: 'pages.notFound.title' } satisfies LayoutHandle,
+      },
     ],
   },
 ]
