@@ -16,7 +16,8 @@ The Phase 13 commit and PR on `feature/mvp-release` can merge when every box in 
 - [x] Test: tapping the badge, or Enter on it, splits it; Enter moves focus to the first member
 - [x] Test: the selected record keeps its own marker, and focus returns to it when its card closes
 - [x] Marker sizes: 25 px pins (40 px when selected) and 20 px cluster badges with a 10 px icon, inside 44 × 44 px tap targets (`map.css`; `iconSize` unchanged)
-- [ ] Manual: badges look right and split smoothly at 360 px (and with reduced motion); the count stays legible and inside the smaller badge
+- [x] The cluster count fits inside the badge for 1–3 digits (headless Edge measurement: 11 px text in the 16 px inner height; badge 30–43 px wide). Before the fix the 15 px count (22.5 px line) overflowed the 14 px inner height
+- [ ] Manual: badges look right and split smoothly at 360 px (and with reduced motion); the count is legible on a real phone
 
 ## 3. States
 
