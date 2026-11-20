@@ -15,7 +15,8 @@ The Phase 13 commit and PR on `feature/mvp-release` can merge when every box in 
 - [x] Test: an overlapping pair shows as a labelled badge with its count, not as two markers
 - [x] Test: tapping the badge, or Enter on it, splits it; Enter moves focus to the first member
 - [x] Test: the selected record keeps its own marker, and focus returns to it when its card closes
-- [ ] Manual: badges look right and split smoothly at 360 px (and with reduced motion)
+- [x] Marker sizes: 25 px pins (40 px when selected) and 20 px cluster badges with a 10 px icon, inside 44 × 44 px tap targets (`map.css`; `iconSize` unchanged)
+- [ ] Manual: badges look right and split smoothly at 360 px (and with reduced motion); the count stays legible and inside the smaller badge
 
 ## 3. States
 

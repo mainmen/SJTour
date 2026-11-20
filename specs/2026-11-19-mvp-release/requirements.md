@@ -16,6 +16,7 @@ The MVP has all four categories, filters, search, list and detail views. Before 
 2. **Marker clustering** `src/core/map/cluster.ts` (pure, tested): markers of one category that would overlap on screen (within 40 px at the current zoom) merge into a badge with the category icon and the count. Nothing clusters above zoom 15, so "Show on map" (zoom 16) always shows the place itself.
    - The badge is a button named "3 lieux, Entreprises. Zoomer pour les afficher"; a tap, Enter or Space zooms in until it splits; with the keyboard, focus then moves to the first member.
    - The selected record always has its own marker, and keeps it after its card closes until the next zoom, so focus can return to it.
+   - **Marker sizes** (`src/web/map/map.css`, D9): the drawn pin is 25 × 25 px (was 34 × 34 px; the selected pin stays 40 × 40 px with a dark ring). The cluster badge is at least 20 × 20 px, with a 10 × 10 px category icon and its count. Both sit inside the unchanged 44 × 44 px tap target (`iconSize`), so targets still meet WCAG 2.5.5.
 3. **Map states** (one polite status under the chips): places loading; no layer on (with **Show all**); search results (Phase 12); nothing to show with the current filters (with **Show all** when some layers are off). A failed category keeps its own alert. List, events and detail pages already have their states.
 4. **Accessibility pass**
    - A **skip link** ("Aller au contenu"), the first tab stop, that focuses `<main>` without changing the URL.
@@ -44,3 +45,4 @@ The MVP has all four categories, filters, search, list and detail views. Before 
 | D6  | **Bundle budget enforced in CI** on the home page's JavaScript.                                                              | The budget (~200 kB) was checked by hand per phase; now a regression fails the build.                   |
 | D7  | **Marker tests use a zero cluster radius** (`vi.mock`); clustering has its own tests.                                        | Existing tests look at single markers; mixing in clustering would make them depend on sample positions. |
 | D8  | **One commit for this phase.**                                                                                               | The one-commit-per-phase rule.                                                                          |
+| D9  | **Smaller drawn markers, same tap targets:** 25 px pins and 20 px cluster badges inside 44 × 44 px icons.                    | Less of the map is covered as data grows; the touch and focus areas don't shrink.                       |
